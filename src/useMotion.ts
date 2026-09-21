@@ -190,6 +190,32 @@ export function useMotion(ready: boolean, reduced: boolean) {
             },
           ),
         );
+      // 3B derinlik: kart ızgaraları öne doğru devrilerek yerine oturur.
+      gsap.utils.toArray<HTMLElement>('.services-grid, .team-grid').forEach((el) =>
+        gsap.fromTo(
+          el,
+          { rotationX: 24, y: 70, transformPerspective: 1200, transformOrigin: '50% 100%' },
+          {
+            rotationX: 0,
+            y: 0,
+            ease: 'none',
+            scrollTrigger: { trigger: el, start: 'top 100%', end: 'top 45%', scrub: 1 },
+          },
+        ),
+      );
+      // Ana görsel fareyle 3B eğilir.
+      const frame = document.querySelector<HTMLElement>('.hero-image-frame');
+      if (frame) {
+        gsap.set(frame, { transformPerspective: 1100 });
+        const fY = gsap.quickTo(frame, 'rotationY', { duration: 0.9, ease: 'power3.out' });
+        const fX = gsap.quickTo(frame, 'rotationX', { duration: 0.9, ease: 'power3.out' });
+        const frameMove = (e: PointerEvent) => {
+          fY((e.clientX / window.innerWidth - 0.5) * 9);
+          fX(-(e.clientY / window.innerHeight - 0.5) * 7);
+        };
+        window.addEventListener('pointermove', frameMove, { passive: true });
+        cleanups.push(() => window.removeEventListener('pointermove', frameMove));
+      }
       const pause = () => {
         if (document.querySelector('dialog[open]')) lenis?.stop();
         else lenis?.start();
@@ -243,6 +269,15 @@ export function useMotion(ready: boolean, reduced: boolean) {
             el,
             { scale: 0.9, opacity: 0.5 },
             { scale: 1, opacity: 1, ease: 'none', scrollTrigger: trig(el, 'top 100%', 'top 55%') },
+          ),
+        );
+      gsap.utils
+        .toArray<HTMLElement>('.services-grid, .team-grid')
+        .forEach((el) =>
+          gsap.fromTo(
+            el,
+            { rotationX: 14, transformPerspective: 900, transformOrigin: '50% 100%' },
+            { rotationX: 0, ease: 'none', scrollTrigger: trig(el, 'top 100%', 'top 55%') },
           ),
         );
       gsap.utils

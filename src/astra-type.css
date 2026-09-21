@@ -381,3 +381,35 @@ em {
     transparent 72%
   );
 }
+
+/* Sıvı 3B küre: fotoğrafın arkasında */
+.liquid-hero {
+  position: absolute;
+  inset: -16% -10% -18% -3%;
+  width: 113%;
+  height: 134%;
+  -webkit-mask-image: radial-gradient(ellipse closest-side, #000 90%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side, #000 90%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.liquid-hero.ready {
+  opacity: 0.9;
+}
+.hero-image-frame {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .liquid-hero {
+    inset: -6% -14% auto -14%;
+    width: 128%;
+    height: 70%;
+  }
+}
+
+.hero {
+  overflow-x: clip;
+}

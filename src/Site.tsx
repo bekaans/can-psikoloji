@@ -24,6 +24,7 @@ import { Brand, LeafMark, WhatsAppIcon } from './Brand';
 import { request } from './api';
 import { useMotion, scrollToId } from './useMotion';
 import { Glints } from './Glints';
+import { LiquidHero } from './LiquidHero';
 
 type ModalContent =
   | { kind: 'service'; index: number }
@@ -205,6 +206,7 @@ export default function Site() {
             </div>
           </div>
           <div className="hero-visual">
+            <LiquidHero still={reduced} />
             <div className="hero-image-frame">
               <img
                 className="hero-photo"
