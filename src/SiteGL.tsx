@@ -32,8 +32,8 @@ void main(){
   float hue=f*1.3+length(q)*.55+r.x*.4+uScroll*.3+uTime*.012;
   vec3 rainbow=.5+.5*cos(6.28318*(hue+vec3(.0,.33,.67)));
   vec3 teal=vec3(.25,.85,.82);
-  vec3 tint=mix(teal,rainbow,.75);
-  float amt=.2+.45*smoothstep(.2,.65,f);
+  vec3 tint=mix(teal,rainbow,.9);
+  float amt=.55+.45*smoothstep(.15,.6,f);
   vec3 c=mix(white,tint,amt);
   c+=.05*smoothstep(.5,.6,f);
   c=mix(white,c,.7+.3*smoothstep(0.,.5,uv.x));
