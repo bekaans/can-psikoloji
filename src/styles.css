@@ -8,13 +8,13 @@
     Arial,
     sans-serif
   );
-  color: #16474a;
-  background: #fafbfb;
+  color: #2a2623;
+  background: #f5f2ef;
   font-synthesis: none;
   font-weight: 400;
-  --paper: #fafbfb;
-  --ink: #16474a;
-  --muted: #3f6466;
+  --paper: #f5f2ef;
+  --ink: #2a2623;
+  --muted: #625d56;
   --line: #cce3e2;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --lime: #b2e5e2;
@@ -88,7 +88,7 @@ em {
 }
 ::selection {
   background: #b2e5e2;
-  color: #16474a;
+  color: #2a2623;
 }
 :focus-visible {
   outline: 2px solid #237b75;
@@ -164,7 +164,7 @@ button:disabled {
   top: 0;
   left: 0;
   right: 0;
-  background: #247a76;
+  background: #006a59;
   transform: scaleX(0);
   transform-origin: left;
   z-index: 100;
@@ -179,7 +179,7 @@ button:disabled {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: #fafbfbed;
+  background: #f5f2efed;
   backdrop-filter: blur(18px);
 }
 .brand {
@@ -283,7 +283,7 @@ button:disabled {
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
-  box-shadow: 0 0 0 4px #247a7613;
+  box-shadow: 0 0 0 4px #006a5913;
 }
 .hero {
   max-width: 1680px;
@@ -342,7 +342,7 @@ button:disabled {
   height: 20px;
 }
 .button:hover {
-  background: #206b6e;
+  background: #005a4b;
   transform: translateY(-3px);
 }
 .text-link {
@@ -411,7 +411,7 @@ button:disabled {
   top: 22px;
   right: 20px;
   color: #ffffff;
-  background: #16474a33;
+  background: #2a262333;
   backdrop-filter: blur(15px);
   border: 1px solid #ffffff44;
   border-radius: 30px;
@@ -435,7 +435,7 @@ button:disabled {
   justify-content: center;
   gap: 6px;
   transform: rotate(-12deg);
-  box-shadow: 0 8px 30px #16474a10;
+  box-shadow: 0 8px 30px #2a262310;
 }
 .hero-seal > svg {
   width: 30px;
@@ -448,7 +448,7 @@ button:disabled {
 .hero-seal i {
   position: absolute;
   inset: 7px;
-  border: 1px dashed #247a7688;
+  border: 1px dashed #006a5988;
   border-radius: 50%;
   animation: seal-spin 60s linear infinite;
 }
@@ -462,7 +462,7 @@ button:disabled {
   justify-content: space-between;
   padding-top: 16px;
   font-size: 8px;
-  color: #247a78;
+  color: #006a59;
 }
 .hero-image-caption > span:last-child {
   letter-spacing: 1.5px;
@@ -566,7 +566,7 @@ button:disabled {
 .about-details .small-label {
   display: block;
   margin-top: 19px;
-  color: #247a76;
+  color: #006a59;
   font-size: 7px;
 }
 .values-row {
@@ -649,7 +649,7 @@ button:disabled {
 .service-card:hover {
   background: #ffffff;
   transform: translateY(-8px);
-  box-shadow: 0 22px 50px #16474a10;
+  box-shadow: 0 22px 50px #2a262310;
 }
 .service-top {
   display: flex;
@@ -740,7 +740,7 @@ button:disabled {
 }
 .service-card .small-label {
   font-size: 7px;
-  color: #247a76;
+  color: #006a59;
   letter-spacing: 1.1px;
 }
 .service-card h3 {
@@ -784,7 +784,7 @@ button:disabled {
 }
 .pause-section {
   min-height: 500px;
-  background: #174d51;
+  background: #006a59;
   color: #f7f9f9;
   position: relative;
   overflow: hidden;
@@ -1049,7 +1049,7 @@ button:disabled {
   font-size: 8px;
   letter-spacing: 0.4px;
   border: 1px solid #ffffff55;
-  background: #fafbfbe8;
+  background: #f5f2efe8;
   backdrop-filter: blur(12px);
   border-radius: 25px;
   padding: 10px 15px;
@@ -1124,7 +1124,7 @@ button:disabled {
 }
 .journey-step p {
   font-size: 11px;
-  color: #247a78;
+  color: #006a59;
   max-width: 340px;
 }
 .journey-step > svg {
@@ -1173,11 +1173,11 @@ button:disabled {
   color: var(--muted);
 }
 .faq-item.open h3 > button {
-  color: #247a78;
+  color: #006a59;
 }
 .contact-section {
   max-width: none;
-  background: #174c4f;
+  background: #006a59;
   color: #e0efed;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -1229,8 +1229,8 @@ button:disabled {
   cursor: pointer;
 }
 .button-light {
-  background: #bfe0de;
-  color: #154649;
+  background: #dff9f2;
+  color: #006a59;
   gap: 17px;
   white-space: nowrap;
   font-size: 10px;
@@ -1313,7 +1313,7 @@ button:disabled {
 }
 .footer-top > p {
   font: italic 25px var(--serif);
-  color: #247a76;
+  color: #006a59;
 }
 .back-to-top {
   display: flex;
@@ -1402,7 +1402,7 @@ button:disabled {
   right: 16px;
   top: 16px;
   z-index: 5;
-  background: #fafbfbed;
+  background: #f5f2efed;
   width: 38px;
   height: 38px;
 }
@@ -2656,7 +2656,7 @@ html.lenis body {
   transform: scaleX(1);
 }
 .desktop-nav a.active {
-  color: #16474a;
+  color: #2a2623;
 }
 .section-heading,
 .journey-step {
@@ -2693,25 +2693,6 @@ html.lenis body {
   height: 58px;
   margin: -12px 0 0 -12px;
 }
-
-/* Tüm site WebGL arka planı */
-.hero-gl {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100vh;
-  height: 100lvh;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.6s ease;
-}
-.hero-gl.ready {
-  opacity: 0.18;
-}
-
-
 
 /* Sade dil: çift tonlu başlık, numaralı etiket ve süs öğeleri yok */
 h1 em,

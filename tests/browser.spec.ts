@@ -143,7 +143,7 @@ test('Mobil: dar ekranlar, menü, odak ve hareket tercihi', async ({ page }) => 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-calm', 'true');
-  await expect(page.locator('.story-word').first()).toHaveCSS('color', 'rgb(22, 71, 74)');
+  await expect(page.locator('.story-word').first()).toHaveCSS('color', 'rgb(42, 38, 35)');
   await page.locator('#iletisim').scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'artifacts/mobile-contact.png' });
   await page.emulateMedia({ reducedMotion: 'no-preference' });

@@ -191,3 +191,145 @@ em {
 .service-description {
   margin-bottom: 40px;
 }
+
+/* DoktorTakvimi tarzı renkler ve gezinme çubuğu */
+:root {
+  --paper: #f5f2ef;
+  --ink: #2a2623;
+  --muted: #625d56;
+  --line: #e4dfda;
+  --brand: #007c68;
+  --brand-deep: #006a59;
+  --mint: #dff9f2;
+  color: #2a2623;
+  background: #f5f2ef;
+}
+.site-header {
+  height: 64px;
+  background: var(--brand);
+  color: #fff;
+  border-bottom: 0;
+  backdrop-filter: none;
+}
+.site-header.scrolled {
+  height: 64px;
+  box-shadow: 0 6px 20px -12px rgb(0 40 34 / 0.55);
+}
+.site-header .brand,
+.site-header .brand > span,
+.site-header .brand-small {
+  color: #fff;
+}
+.site-header .brand-small {
+  opacity: 1;
+}
+.desktop-nav a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.desktop-nav a.active {
+  color: #fff;
+}
+.desktop-nav a:after {
+  height: 2px;
+  background: var(--mint);
+}
+.header-appointment {
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--brand-deep);
+  font-size: 14px;
+  font-weight: 600;
+}
+.header-appointment:hover {
+  background: #fff;
+}
+.site-header .icon-button {
+  color: #fff;
+}
+.scroll-progress {
+  background: var(--mint);
+}
+.button-light {
+  background: var(--mint);
+  color: var(--brand-deep);
+}
+.button {
+  background: var(--brand);
+}
+.button:hover {
+  background: var(--brand-deep);
+}
+
+/* Arka katmanda küçük ışık yansımaları */
+.glint-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.glint {
+  position: absolute;
+  opacity: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 1) 0 5%,
+    rgb(190 245 230 / 1) 13%,
+    rgb(0 150 125 / 0.32) 34%,
+    transparent 68%
+  );
+}
+.glint::before,
+.glint::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(90deg, transparent, rgb(0 124 104 / 0.55), transparent);
+}
+.glint::before {
+  width: 100%;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+.glint::after {
+  width: 1px;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(transparent, rgb(0 124 104 / 0.55), transparent);
+}
+
+.contact-section .text-link {
+  color: var(--mint);
+}
+.contact-section .contact-heading > p:not(.eyebrow),
+.contact-section .contact-heading > p {
+  color: #e6f6f1;
+}
+
+.contact-section .eyebrow,
+.contact-section .small-label,
+.contact-section p,
+.contact-section label,
+.contact-section .form-note,
+.contact-section address {
+  color: #e6f6f1;
+}
+.pause-section .eyebrow,
+.pause-section p {
+  color: #e6f6f1;
+}
+
+.button.button-light {
+  background: var(--mint);
+  color: var(--brand-deep);
+}
+.button.button-light:hover {
+  background: #fff;
+}

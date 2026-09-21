@@ -132,7 +132,7 @@
   transition: box-shadow 0.4s;
 }
 .hero-visual:hover .hero-seal {
-  box-shadow: 0 12px 40px #16474a20;
+  box-shadow: 0 12px 40px #2a262320;
 }
 .gallery-side > p br:after {
   content: ' ';

@@ -123,7 +123,7 @@
 }
 .admin-user > button {
   margin-left: auto;
-  color: #247a78;
+  color: #006a59;
   min-width: 32px;
   min-height: 36px;
 }
@@ -148,7 +148,7 @@
   align-items: center;
   gap: 15px;
   font-size: 10px;
-  color: #247a78;
+  color: #006a59;
 }
 .admin-topbar strong {
   font-weight: 500;
@@ -200,7 +200,7 @@
 }
 .admin-title-row > div > p:not(.eyebrow) {
   font-size: 10px;
-  color: #247a78;
+  color: #006a59;
 }
 .admin-page-actions {
   display: flex;
@@ -218,7 +218,7 @@
 }
 .admin-save:disabled {
   background: #cbe3e2;
-  color: #247a78;
+  color: #006a59;
   opacity: 1;
 }
 .admin-secondary {
@@ -339,7 +339,7 @@
 }
 .admin-panel-heading p {
   font-size: 10px;
-  color: #247a78;
+  color: #006a59;
   line-height: 1.8;
   margin-top: 8px;
   max-width: 630px;
@@ -414,7 +414,7 @@
 .admin-field > span:first-child {
   font-size: 10px;
   font-weight: 600;
-  color: #247a78;
+  color: #006a59;
 }
 .admin-field input,
 .admin-field textarea,
@@ -436,7 +436,7 @@
 }
 .admin-field small {
   font-size: 9px;
-  color: #247a78;
+  color: #006a59;
   line-height: 1.7;
 }
 .admin-fields-grid {
@@ -651,7 +651,7 @@
 }
 .revision-list span {
   font-size: 9px;
-  color: #247a78;
+  color: #006a59;
 }
 .revision-list button {
   margin-left: auto;
