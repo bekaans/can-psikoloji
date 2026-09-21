@@ -64,3 +64,7 @@ Henüz canpsikoloji.com'a dağıtılmadı. Bu uygulama sunucu gerektirir; yönet
 Üretim sunucusu HTTPS origin olmadan açılmaz. Passport + SQLite oturum deposu, bcrypt 12, HttpOnly/Secure/SameSite çerezleri, bir saatlik oturum, Origin ve CSRF doğrulaması, rol kontrolü, hız sınırları ve Helmet başlıkları uygulanır. Yüklenen dosyalar boyut/MIME/uzantı ve gerçek görüntü içeriğiyle doğrulanır, yeniden kodlanır, EXIF'ten arındırılır ve UUID adıyla web kökü dışında saklanır. Hız sınırları tek uygulama süreci içindir.
 
 Kaynaklar ve doğrulanan işletme bilgileri: [docs/kaynaklar.md](docs/kaynaklar.md).
+
+## Müşteri gösterimi (GitHub Pages)
+
+`main` dalına her gönderimde `.github/workflows/pages.yml` siteyi statik olarak https://bekaans.github.io/can-psikoloji/ adresine yayınlar. Bu sürüm `public/content.json` dosyasındaki içeriği gösterir; yönetim paneli ve API yoktur. İçeriği panelde değiştirirseniz güncel halini bu dosyaya aktarıp göndermeniz gerekir. Panelli gerçek yayın için yukarıdaki "Canlı yayın" bölümü geçerlidir.

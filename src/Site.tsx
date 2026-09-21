@@ -77,8 +77,18 @@ export default function Site() {
   useMotion(!!content, reduced);
   useEffect(() => {
     const controller = new AbortController();
-    request<ContentEnvelope>('/api/content', { signal: controller.signal })
-      .then((data) => setContent(data.content))
+    const base = import.meta.env.BASE_URL;
+    const load = import.meta.env.VITE_STATIC
+      ? request<ContentEnvelope['content']>(base + 'content.json', {
+          signal: controller.signal,
+        }).then((c) =>
+          JSON.parse(JSON.stringify(c).replaceAll('"/images/', '"' + base + 'images/')),
+        )
+      : request<ContentEnvelope>('/api/content', { signal: controller.signal }).then(
+          (data) => data.content,
+        );
+    load
+      .then((c) => setContent(c))
       .catch((e) => {
         if (e.name !== 'AbortError') setError('Sayfa yüklenemedi. Lütfen yeniden deneyin.');
       });
