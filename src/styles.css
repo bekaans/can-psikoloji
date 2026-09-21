@@ -2708,7 +2708,7 @@ html.lenis body {
   transition: opacity 1.6s ease;
 }
 .hero-gl.ready {
-  opacity: 1;
+  opacity: 0.6;
 }
 .services-section {
   background: rgb(231 242 241 / 0.28);

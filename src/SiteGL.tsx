@@ -28,15 +28,15 @@ void main(){
   vec2 q=vec2(fbm(p+t),fbm(p+vec2(5.2,1.3)-t));
   vec2 r=vec2(fbm(p+3.*q+vec2(1.7,9.2)+t*1.3),fbm(p+3.*q+vec2(8.3,2.8)-t));
   float f=fbm(p+3.*r+vec2(uScroll*.5,uScroll*.9));
-  vec3 cream=vec3(.985,.995,.995);
-  vec3 sage=vec3(.76,.93,.92);
-  vec3 olive=vec3(.36,.78,.76);
-  vec3 deep=vec3(.08,.50,.52);
-  vec3 c=mix(cream,sage,smoothstep(.3,.62,f));
-  c=mix(c,olive,smoothstep(.35,.85,length(q))*.75);
-  c=mix(c,deep,smoothstep(.4,.9,r.x*f)*.35);
-  c+=.05*smoothstep(.5,.6,f)*vec3(1.,.98,.9);
-  c=mix(cream,c,.72+.28*smoothstep(0.,.5,uv.x));
+  vec3 white=vec3(1.,1.,1.);
+  float hue=f*1.3+length(q)*.55+r.x*.4+uScroll*.12+uTime*.01;
+  vec3 rainbow=.5+.5*cos(6.28318*(hue+vec3(.0,.33,.67)));
+  vec3 teal=vec3(.25,.85,.82);
+  vec3 tint=mix(teal,rainbow,.75);
+  float amt=.22+.5*smoothstep(.2,.65,f);
+  vec3 c=mix(white,tint,amt);
+  c+=.05*smoothstep(.5,.6,f);
+  c=mix(white,c,.7+.3*smoothstep(0.,.5,uv.x));
   gl_FragColor=vec4(c,1.);
 }`;
 
