@@ -22,7 +22,7 @@ import {
 import { type SiteContent, type ContentEnvelope, whatsappLink } from '../shared/content';
 import { Brand, LeafMark, WhatsAppIcon } from './Brand';
 import { request } from './api';
-import { useMotion } from './useMotion';
+import { useMotion, scrollToId } from './useMotion';
 import { SiteGL } from './SiteGL';
 
 type ModalContent =
@@ -557,7 +557,16 @@ export default function Site() {
         </div>
         <nav aria-label="Mobil gezinme">
           {[...nav, ['Sorularınız', 'sorular'], ['İletişim', 'iletisim']].map(([label, id], i) => (
-            <a href={'#' + id} key={id} onClick={() => setMenu(false)}>
+            <a
+              href={'#' + id}
+              key={id}
+              onClick={(e) => {
+                e.preventDefault();
+                setMenu(false);
+                // Menü kapanıp kaydırma kilidi kalkınca hedefe git.
+                setTimeout(() => scrollToId(id, reduced), 120);
+              }}
+            >
               <span>0{i + 1}</span>
               {label}
               <ArrowUpRight />

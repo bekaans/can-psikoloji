@@ -2,8 +2,22 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import Lenis from 'lenis';
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+
+/** Bağlantılar için JS ile yönetilen kaydırma; tarayıcının smooth scroll'una bağlı kalmaz. */
+export function scrollToId(id: string, instant = false) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  gsap.to(window, {
+    duration: instant ? 0 : 1.1,
+    scrollTo: { y: target, offsetY: 80, autoKill: false },
+    ease: 'power3.inOut',
+    overwrite: true,
+  });
+  history.replaceState(null, '', '#' + id);
+}
 
 const HEADINGS =
   '.hero h1, .section-heading h2, .pause-copy h2, .journey-section h2, .contact-heading h2';
@@ -201,6 +215,14 @@ export function useMotion(ready: boolean, reduced: boolean) {
     });
     // Telefon: yalnızca transform / opaklık; pin, maske ve imleç yok, böylece akıcı kalır.
     mm.add('(max-width: 899px), (pointer: coarse)', () => {
+      const onAnchor = (e: MouseEvent) => {
+        const a = (e.target as HTMLElement).closest?.('a[href^="#"]');
+        const id = a?.getAttribute('href')?.slice(1);
+        if (!id || e.defaultPrevented || !document.getElementById(id)) return;
+        e.preventDefault();
+        scrollToId(id);
+      };
+      document.addEventListener('click', onAnchor);
       const trig = (trigger: Element | string, start: string, end: string) => ({
         trigger,
         start,
@@ -248,6 +270,7 @@ export function useMotion(ready: boolean, reduced: boolean) {
             { y: 0, opacity: 1, ease: 'none', scrollTrigger: trig(el, 'top 100%', 'top 70%') },
           ),
         );
+      return () => document.removeEventListener('click', onAnchor);
     });
     const ctx = gsap.context(() => {
       gsap.from('.hero-copy > *', {
@@ -366,15 +389,13 @@ export function useMotion(ready: boolean, reduced: boolean) {
     });
     const refresh = () => ScrollTrigger.refresh();
     document.fonts.ready.then(refresh);
-    document
-      .querySelectorAll('img')
-      .forEach((img) => img.addEventListener('load', refresh, { once: true }));
+    // Not: görsellerin her yüklenişinde refresh çağrılmaz; kaydırma konumunu sıfırlayıp
+    // bağlantı kaydırmalarını yarıda keserdi. Görsellerin width/height değerleri yer ayırır.
     return () => {
       cancelled = true;
       textCtx.revert();
       ctx.revert();
       mm.revert();
-      document.querySelectorAll('img').forEach((img) => img.removeEventListener('load', refresh));
     };
   }, [ready, reduced]);
 }

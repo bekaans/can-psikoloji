@@ -12,7 +12,7 @@ export function LeafMark({ className = '' }: { className?: string }) {
 }
 export function Brand() {
   return (
-    <a className="brand" href="/" aria-label="Can Psikoloji ana sayfa">
+    <a className="brand" href={import.meta.env.BASE_URL} aria-label="Can Psikoloji ana sayfa">
       <LeafMark />
       <span>
         can<span className="brand-small">psikoloji</span>
