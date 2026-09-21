@@ -333,3 +333,51 @@ em {
 .button.button-light:hover {
   background: #fff;
 }
+
+/* Sade, yavaş süzülen zemin */
+.ambient {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(38% 30% at 20% 25%, rgb(0 150 125 / 0.07), transparent 70%),
+    radial-gradient(34% 28% at 80% 70%, rgb(190 240 225 / 0.32), transparent 70%),
+    radial-gradient(30% 26% at 55% 10%, rgb(255 255 255 / 0.5), transparent 70%);
+  animation: ambient-drift 26s ease-in-out infinite alternate;
+  transform: translate3d(0, calc(var(--sy, 0) * -0.04px), 0);
+}
+@keyframes ambient-drift {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0;
+    filter: hue-rotate(0deg);
+    scale: 1;
+  }
+  to {
+    background-position:
+      6% 8%,
+      -7% -5%,
+      4% -6%;
+    filter: hue-rotate(14deg);
+    scale: 1.08;
+  }
+}
+.touch-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.95) 0 8%,
+    rgb(190 245 230 / 0.6) 30%,
+    rgb(0 150 125 / 0.16) 58%,
+    transparent 72%
+  );
+}
