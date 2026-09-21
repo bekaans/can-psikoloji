@@ -2708,14 +2708,10 @@ html.lenis body {
   transition: opacity 1.6s ease;
 }
 .hero-gl.ready {
-  opacity: 0.6;
+  opacity: 0.4;
 }
-.services-section {
-  background: rgb(231 242 241 / 0.28);
-}
-.journey-section {
-  background: rgb(231 242 241 / 0.28);
-}
+
+
 
 /* Sade dil: çift tonlu başlık, numaralı etiket ve süs öğeleri yok */
 h1 em,
@@ -2763,4 +2759,9 @@ h2 em {
 .contact-heading h2 em,
 .pause-copy h2 em {
   color: inherit;
+}
+
+.services-section,
+.journey-section {
+  background: transparent;
 }

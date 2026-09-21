@@ -29,11 +29,11 @@ void main(){
   vec2 r=vec2(fbm(p+3.*q+vec2(1.7,9.2)+t*1.3),fbm(p+3.*q+vec2(8.3,2.8)-t));
   float f=fbm(p+3.*r+vec2(uScroll*.5,uScroll*.9));
   vec3 white=vec3(1.,1.,1.);
-  float hue=f*1.3+length(q)*.55+r.x*.4+uScroll*.12+uTime*.01;
+  float hue=f*1.3+length(q)*.55+r.x*.4+uScroll*.3+uTime*.012;
   vec3 rainbow=.5+.5*cos(6.28318*(hue+vec3(.0,.33,.67)));
   vec3 teal=vec3(.25,.85,.82);
   vec3 tint=mix(teal,rainbow,.75);
-  float amt=.22+.5*smoothstep(.2,.65,f);
+  float amt=.2+.45*smoothstep(.2,.65,f);
   vec3 c=mix(white,tint,amt);
   c+=.05*smoothstep(.5,.6,f);
   c=mix(white,c,.7+.3*smoothstep(0.,.5,uv.x));
@@ -98,8 +98,8 @@ export function SiteGL({ still }: { still: boolean }) {
       gl.uniform2f(uMouse, mouse.x, mouse.y);
       const dy = scrollY - lastY;
       lastY = scrollY;
-      flow += (dy / Math.max(1, innerHeight)) * 1.8;
-      gl.uniform1f(uScroll, flow + (scrollY / Math.max(1, innerHeight)) * 0.6);
+      flow += (dy / Math.max(1, innerHeight)) * 4;
+      gl.uniform1f(uScroll, flow + (scrollY / Math.max(1, innerHeight)) * 1.2);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
     const loop = () => {
