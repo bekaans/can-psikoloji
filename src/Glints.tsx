@@ -126,7 +126,6 @@ export function Glints({ still }: { still: boolean }) {
   }, [still]);
   return (
     <div ref={layer} className="glint-layer" aria-hidden="true">
-      {!still && <div className="ambient" />}
       <div ref={glow} className="touch-glow" />
     </div>
   );

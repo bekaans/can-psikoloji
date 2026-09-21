@@ -24,7 +24,7 @@ import { Brand, LeafMark, WhatsAppIcon } from './Brand';
 import { request } from './api';
 import { useMotion, scrollToId } from './useMotion';
 import { Glints } from './Glints';
-import { LiquidHero } from './LiquidHero';
+import { SiteGL } from './SiteGL';
 
 type ModalContent =
   | { kind: 'service'; index: number }
@@ -161,6 +161,7 @@ export default function Site() {
       <a className="skip-link" href="#main">
         İçeriğe geç
       </a>
+      <SiteGL still={reduced} />
       <Glints still={reduced} />
       <div className="scroll-progress" aria-hidden="true" />
       <header className="site-header">
@@ -206,7 +207,6 @@ export default function Site() {
             </div>
           </div>
           <div className="hero-visual">
-            <LiquidHero still={reduced} />
             <div className="hero-image-frame">
               <img
                 className="hero-photo"
