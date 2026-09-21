@@ -1,0 +1,444 @@
+/* Keep body copy comfortable to read, including at narrow phone widths. */
+:root {
+  --muted: #237b79;
+}
+.hero-footnote,
+.hero-image-caption,
+.hero-bottom,
+.about-details .small-label,
+.service-number,
+.service-card .small-label,
+.gallery-side > .small-label,
+.gallery-navigation > span,
+.team-meta .small-label,
+.journey-step > span,
+.journey-step p,
+.faq-number,
+.footer-bottom {
+  color: #247b79;
+}
+.footer-top > p {
+  color: #247a77;
+}
+.desktop-nav a {
+  font-size: 12px;
+}
+.header-appointment {
+  font-size: 12px;
+}
+.hero-description {
+  font-size: 14px;
+  max-width: 410px;
+}
+.hero-footnote {
+  font-size: 10px;
+}
+.hero-ctas .button {
+  font-size: 12px;
+}
+.hero-ctas .text-link {
+  font-size: 12px;
+}
+.about-details p {
+  font-size: 13px;
+}
+.about-details .about-note {
+  font-size: 26px;
+}
+.values-row > span {
+  font-size: 10px;
+}
+.section-heading > p {
+  font-size: 13px;
+}
+.service-card {
+  min-height: 395px;
+}
+.service-card .small-label {
+  font-size: 8px;
+}
+.service-description {
+  font-size: 12px;
+}
+.service-bottom {
+  font-size: 10px;
+}
+.gallery-side > .small-label {
+  font-size: 8px;
+}
+.gallery-side > .text-link {
+  font-size: 12px;
+}
+.team-meta .small-label {
+  font-size: 9px;
+}
+.team-focus {
+  font-size: 10px;
+}
+.journey-step p {
+  font-size: 13px;
+}
+.faq-item h3 > button {
+  font-size: 14px;
+}
+.faq-answer {
+  font-size: 13px;
+}
+.faq-section > div > p:not(.eyebrow) {
+  font-size: 13px;
+}
+.contact-heading > p:not(.eyebrow) {
+  font-size: 13px;
+}
+.contact-info address {
+  font-size: 14px;
+}
+.contact-info .text-link {
+  font-size: 11px;
+}
+.contact-hours {
+  font-size: 11px;
+}
+.contact-heading label {
+  font-size: 11px;
+}
+.contact-form-row select,
+.contact-form-row .button {
+  font-size: 12px;
+}
+.form-note {
+  font-size: 9px;
+}
+.pause-copy > span {
+  font-size: 12px;
+}
+.floating-whatsapp > span {
+  font-size: 10px;
+}
+.footer-bottom {
+  font-size: 10px;
+}
+.footer-bottom button {
+  font-size: 10px;
+}
+.back-to-top {
+  font-size: 10px;
+}
+.hero-image-frame {
+  isolation: isolate;
+  clip-path: inset(0 round 180px 6px 6px 6px);
+}
+.hero-seal {
+  transition: box-shadow 0.4s;
+}
+.hero-visual:hover .hero-seal {
+  box-shadow: 0 12px 40px #16474a20;
+}
+.gallery-side > p br:after {
+  content: ' ';
+}
+@media (max-width: 1100px) {
+  .desktop-nav {
+    gap: 22px;
+  }
+  .desktop-nav a {
+    font-size: 11px;
+  }
+  .header-appointment {
+    font-size: 10px;
+  }
+  .hero h1 {
+    font-size: 72px;
+  }
+  .hero-description {
+    font-size: 13px;
+    max-width: 350px;
+  }
+  .hero-footnote {
+    font-size: 9px;
+  }
+  .hero-copy {
+    padding-top: 20px;
+  }
+  .service-card {
+    padding: 23px 20px;
+    min-height: 415px;
+  }
+  .service-card h3 {
+    font-size: 27px;
+  }
+  .service-description {
+    font-size: 11px;
+  }
+  .gallery-side > p {
+    font-size: 33px;
+  }
+  .gallery-side > .small-label {
+    font-size: 7px;
+  }
+  .values-row > span {
+    font-size: 9px;
+  }
+  .hero-image-frame {
+    clip-path: inset(0 round 150px 6px 6px 6px);
+  }
+}
+@media (max-width: 900px) {
+  .hero h1 {
+    font-size: 62px;
+  }
+  .hero-description {
+    font-size: 12px;
+  }
+  .hero-ctas .button {
+    font-size: 10px;
+  }
+  .hero-ctas .text-link {
+    font-size: 10px;
+  }
+  .hero-footnote {
+    font-size: 8px;
+  }
+  .hero-image-frame {
+    clip-path: inset(0 round 120px 6px 6px 6px);
+  }
+  .service-card {
+    min-height: 340px;
+  }
+  .service-card h3 {
+    font-size: 32px;
+  }
+  .service-description {
+    font-size: 12px;
+  }
+  .service-card .small-label {
+    font-size: 8px;
+  }
+  .service-bottom {
+    font-size: 10px;
+  }
+  .about-details {
+    grid-template-columns: 1fr;
+  }
+  .about-details > div {
+    margin-top: 22px;
+  }
+  .about-details p {
+    font-size: 13px;
+  }
+  .about-details .about-note {
+    font-size: 24px;
+  }
+  .team-focus {
+    font-size: 9px;
+  }
+  .contact-form-row .button {
+    font-size: 11px;
+  }
+  .contact-info address {
+    font-size: 13px;
+  }
+  .values-row > span {
+    font-size: 10px;
+  }
+}
+@media (max-width: 650px) {
+  .header-appointment {
+    font-size: 9px;
+  }
+  .hero-copy {
+    padding-top: 0;
+  }
+  .hero h1 {
+    font-size: clamp(54px, 13.8vw, 82px);
+    margin-bottom: 22px;
+  }
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.85;
+    max-width: 380px;
+  }
+  .hero-ctas .button {
+    font-size: 11px;
+  }
+  .hero-ctas .text-link {
+    font-size: 11px;
+  }
+  .hero-footnote {
+    font-size: 9px;
+    gap: 7px;
+  }
+  .hero-visual {
+    margin-top: 30px;
+  }
+  .hero-image-frame {
+    clip-path: inset(0 round 100px 4px 4px 4px);
+  }
+  .section-heading > p {
+    font-size: 13px;
+  }
+  .about-details p {
+    font-size: 14px;
+  }
+  .about-details .about-note {
+    font-size: 26px;
+  }
+  .values-row > span {
+    font-size: 10px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .service-card {
+    padding: 24px;
+    min-height: 296px;
+  }
+  .service-card h3 {
+    font-size: 34px;
+    min-height: 0;
+    margin: 9px 0 14px;
+  }
+  .service-card .small-label {
+    margin-top: 37px;
+    font-size: 8px;
+    letter-spacing: 1.4px;
+  }
+  .service-description {
+    font-size: 13px;
+    -webkit-line-clamp: 3;
+    max-width: none;
+  }
+  .service-card .service-description {
+    max-width: none;
+  }
+  .service-top svg {
+    width: 24px;
+    height: 24px;
+  }
+  .service-number {
+    font-size: 17px;
+  }
+  .service-card .service-art {
+    right: 35px;
+    top: 43px;
+    scale: 0.8;
+  }
+  .service-bottom {
+    font-size: 11px;
+    padding-top: 20px;
+  }
+  .circle-arrow {
+    width: 34px;
+    height: 34px;
+  }
+  .circle-arrow svg {
+    width: 19px;
+  }
+  .gallery-side > .small-label {
+    font-size: 8px;
+  }
+  .gallery-side > .text-link {
+    font-size: 12px;
+  }
+  .team-meta .small-label {
+    font-size: 9px;
+  }
+  .team-focus {
+    font-size: 10px;
+  }
+  .journey-step p {
+    font-size: 13px;
+  }
+  .faq-item h3 > button {
+    font-size: 14px;
+    gap: 9px;
+  }
+  .faq-number {
+    margin-right: 2px;
+  }
+  .faq-answer {
+    font-size: 14px;
+  }
+  .faq-section > div > p:not(.eyebrow) {
+    font-size: 13px;
+  }
+  .contact-heading > p:not(.eyebrow) {
+    font-size: 14px;
+  }
+  .contact-info address {
+    font-size: 14px;
+  }
+  .contact-info .text-link {
+    font-size: 12px;
+  }
+  .contact-form-row select {
+    font-size: 14px;
+  }
+  .contact-form-row .button {
+    font-size: 13px;
+  }
+  .contact-heading label {
+    font-size: 12px;
+  }
+  .form-note {
+    font-size: 10px;
+  }
+  .contact-hours {
+    font-size: 12px;
+  }
+  .pause-copy > span {
+    font-size: 11px;
+  }
+  .footer-bottom {
+    font-size: 9px;
+  }
+  .footer-bottom button {
+    font-size: 9px;
+  }
+  .footer-top > .back-to-top {
+    font-size: 10px;
+  }
+  .gallery-side > p {
+    line-height: 1.3;
+  }
+}
+@media (max-width: 370px) {
+  .header-appointment {
+    font-size: 8px;
+  }
+  .hero h1 {
+    font-size: 54px;
+    letter-spacing: -2px;
+  }
+  .hero-description {
+    font-size: 13px;
+  }
+  .hero-footnote {
+    font-size: 8px;
+  }
+  .hero-ctas .button {
+    font-size: 10px;
+  }
+  .hero-ctas .text-link {
+    font-size: 10px;
+  }
+  .values-row > span {
+    font-size: 9px;
+  }
+  .faq-item h3 > button {
+    font-size: 13px;
+  }
+  .service-card {
+    min-height: 305px;
+  }
+  .service-card h3 {
+    font-size: 32px;
+  }
+  .footer-bottom {
+    font-size: 8px;
+  }
+  .footer-bottom button {
+    font-size: 8px;
+  }
+}
