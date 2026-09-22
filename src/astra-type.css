@@ -326,20 +326,3 @@ em {
 .hero {
   overflow-x: clip;
 }
-
-/* En arka katman: tüm sayfayı kaplayan, %90 şeffaf akış rengi (kaydırdıkça şekil değiştirir) */
-.hero-gl {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100vh;
-  height: 100lvh;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.6s ease;
-}
-.hero-gl.ready {
-  opacity: 0.1;
-}
