@@ -23,7 +23,7 @@ import { type SiteContent, type ContentEnvelope, whatsappLink } from '../shared/
 import { Brand, LeafMark, WhatsAppIcon } from './Brand';
 import { request } from './api';
 import { useMotion, scrollToId } from './useMotion';
-import { Glints } from './Glints';
+import { TouchGlow } from './TouchGlow';
 import { SiteGL } from './SiteGL';
 
 type ModalContent =
@@ -162,7 +162,7 @@ export default function Site() {
         İçeriğe geç
       </a>
       <SiteGL still={reduced} />
-      <Glints still={reduced} />
+      <TouchGlow still={reduced} />
       <div className="scroll-progress" aria-hidden="true" />
       <header className="site-header">
         <Brand />

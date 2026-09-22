@@ -1,59 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-/**
- * En arka katman: yavaş süzülen sade bir zemin, aşağı kaydırdıkça beliren çok şeffaf
- * yansımalar ve dokunmatik ekranda parmağın gittiği yönde beliren parlaklık.
- */
-export function Glints({ still }: { still: boolean }) {
-  const layer = useRef<HTMLDivElement>(null);
+/** Dokunmatik ekranda parmağın gittiği yönde beliren yumuşak parlaklık (en arka katman). */
+export function TouchGlow({ still }: { still: boolean }) {
   const glow = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const host = layer.current;
-    if (!host || still) return;
-    let last = scrollY;
-    let acc = 0;
-    let active = 0;
-    let frame = 0;
-    const step = 170;
-    const spawn = () => {
-      const el = document.createElement('i');
-      const size = 50 + Math.random() * 120;
-      el.className = 'glint';
-      el.style.cssText = `left:${Math.random() * 96}%;top:${8 + Math.random() * 84}%;width:${size}px;height:${size}px`;
-      host.appendChild(el);
-      active++;
-      const spin = (Math.random() - 0.5) * 50;
-      const peak = 0.22 + Math.random() * 0.2;
-      const anim = el.animate(
-        [
-          { opacity: 0, transform: `translate(-50%,-50%) scale(0.3) rotate(${-spin}deg)` },
-          { opacity: peak, transform: 'translate(-50%,-50%) scale(1) rotate(0deg)', offset: 0.35 },
-          { opacity: 0, transform: `translate(-50%,-50%) scale(1.3) rotate(${spin}deg)` },
-        ],
-        { duration: 2000 + Math.random() * 1400, easing: 'cubic-bezier(.22,1,.36,1)' },
-      );
-      anim.onfinish = () => {
-        el.remove();
-        active--;
-      };
-    };
-    const onScroll = () => {
-      const dy = scrollY - last;
-      last = scrollY;
-      acc += Math.abs(dy);
-      while (acc > step) {
-        acc -= step;
-        if (active < 10) spawn();
-      }
-      if (!frame) {
-        frame = requestAnimationFrame(() => {
-          frame = 0;
-          host.style.setProperty('--sy', String(scrollY));
-        });
-      }
-    };
-    addEventListener('scroll', onScroll, { passive: true });
-
+    if (still) return;
     // Dokunmatik: parmağın gittiği yöne doğru yumuşak parlaklık.
     const el = glow.current;
     let cleanupTouch = () => {};
@@ -98,7 +49,7 @@ export function Glints({ still }: { still: boolean }) {
         // Parmağın önünde, gittiği yönde.
         tx = Math.min(innerWidth - 30, Math.max(30, px + (dx / len) * 110));
         ty = Math.min(innerHeight - 30, Math.max(30, py + (dy / len) * 110));
-        target = Math.min(0.75, 0.25 + len * 0.05);
+        target = Math.min(0.38, 0.12 + len * 0.025);
         start();
       };
       const onEnd = () => {
@@ -117,15 +68,10 @@ export function Glints({ still }: { still: boolean }) {
         removeEventListener('touchcancel', onEnd);
       };
     }
-    return () => {
-      removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(frame);
-      cleanupTouch();
-      host.querySelectorAll('.glint').forEach((n) => n.remove());
-    };
+    return cleanupTouch;
   }, [still]);
   return (
-    <div ref={layer} className="glint-layer" aria-hidden="true">
+    <div className="glint-layer" aria-hidden="true">
       <div ref={glow} className="touch-glow" />
     </div>
   );

@@ -273,37 +273,6 @@ em {
   overflow: hidden;
   pointer-events: none;
 }
-.glint {
-  position: absolute;
-  opacity: 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgb(255 255 255 / 1) 0 5%,
-    rgb(190 245 230 / 1) 13%,
-    rgb(0 150 125 / 0.32) 34%,
-    transparent 68%
-  );
-}
-.glint::before,
-.glint::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background: linear-gradient(90deg, transparent, rgb(0 124 104 / 0.55), transparent);
-}
-.glint::before {
-  width: 100%;
-  height: 1px;
-  transform: translate(-50%, -50%);
-}
-.glint::after {
-  width: 1px;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(transparent, rgb(0 124 104 / 0.55), transparent);
-}
 
 .contact-section .text-link {
   color: var(--mint);
