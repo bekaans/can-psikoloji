@@ -54,10 +54,7 @@ test('Masaüstü: gezinme, hizmetler, uzmanlar, galeri, sorular ve WhatsApp', as
   await page.locator('#alanlar').scrollIntoViewIfNeeded();
   await page.locator('.service-card').first().click();
   await expect(page.locator('.detail-modal')).toBeVisible();
-  await expect(page.locator('.detail-modal a')).toHaveAttribute(
-    'href',
-    /wa\.me\/905541406244\?text=.*Bireysel/,
-  );
+  await expect(page.locator('.detail-modal h2')).toHaveText('Bireysel terapi');
   await page.keyboard.press('Escape');
   await expect(page.locator('.detail-modal')).not.toBeVisible();
   await page.locator('.team-card').first().click();
@@ -90,7 +87,7 @@ test('Masaüstü: gezinme, hizmetler, uzmanlar, galeri, sorular ve WhatsApp', as
       return null;
     }) as typeof window.open;
   });
-  await page.getByRole('button', { name: 'WhatsApp’ta görüşelim' }).click();
+  await page.getByRole('button', { name: 'Bize WhatsApp’tan yazabilirsiniz' }).click();
   const opened = await page.evaluate(() => (window as unknown as { opened: string }).opened);
   expect(decodeURIComponent(opened)).toContain('Çift & aile');
   expect(opened).toContain('https://wa.me/905541406244');
@@ -143,7 +140,7 @@ test('Mobil: dar ekranlar, menü, odak ve hareket tercihi', async ({ page }) => 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-calm', 'true');
-  await expect(page.locator('.story-word').first()).toHaveCSS('color', 'rgb(42, 38, 35)');
+  await expect(page.locator('.story-word').first()).toHaveCSS('color', 'rgb(33, 30, 28)');
   await page.locator('#iletisim').scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'artifacts/mobile-contact.png' });
   await page.emulateMedia({ reducedMotion: 'no-preference' });

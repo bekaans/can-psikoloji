@@ -478,7 +478,7 @@ export default function Site() {
                 );
               }}
             >
-              <label htmlFor="topic">Hangi konuda bilgi almak istersiniz?</label>
+              <label htmlFor="topic">Hangi konuda yazmak istersiniz?</label>
               <div className="contact-form-row">
                 <select id="topic" value={topic} onChange={(e) => setTopic(e.target.value)}>
                   <option value="">Birlikte karar verelim</option>
@@ -487,7 +487,7 @@ export default function Site() {
                   ))}
                 </select>
                 <button className="button button-light" type="submit">
-                  WhatsApp’ta görüşelim <WhatsAppIcon />
+                  Bize WhatsApp’tan yazabilirsiniz <WhatsAppIcon />
                 </button>
               </div>
               <span className="form-note">
@@ -625,9 +625,6 @@ export default function Site() {
                     <span key={t}>{t}</span>
                   ))}
                 </div>
-                <External className="button" href={whatsappLink(content, s.title)}>
-                  Bilgi al & randevu planla <ArrowUpRight size={18} />
-                </External>
               </div>
             );
           })()}
@@ -642,12 +639,6 @@ export default function Site() {
                   <h2>{m.name}</h2>
                   <p>{m.bio}</p>
                   <p className="small-label">{m.focus}</p>
-                  <External
-                    className="button"
-                    href={whatsappLink(content, m.name + ' ile görüşme')}
-                  >
-                    Randevu hakkında bilgi alın <ArrowUpRight size={18} />
-                  </External>
                 </div>
               </div>
             );

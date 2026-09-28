@@ -192,77 +192,82 @@ em {
   margin-bottom: 40px;
 }
 
-/* DoktorTakvimi tarzı renkler ve gezinme çubuğu */
+/* Siyah beyaz, küçük ayrıntılarda kırmızı vurgu */
 :root {
   --paper: #f5f2ef;
-  --ink: #2a2623;
-  --muted: #625d56;
-  --line: #e4dfda;
-  --brand: #007c68;
-  --brand-deep: #006a59;
-  --mint: #dff9f2;
-  color: #2a2623;
+  --ink: #211e1c;
+  --muted: #5c5854;
+  --line: #ddd9d5;
+  --brand: #c23a35;
+  --brand-deep: #a52d29;
+  color: #211e1c;
   background: #f5f2ef;
 }
 .site-header {
   height: 64px;
-  background: var(--brand);
-  color: #fff;
-  border-bottom: 0;
+  background: var(--paper);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
   backdrop-filter: none;
 }
 .site-header.scrolled {
   height: 64px;
-  box-shadow: 0 6px 20px -12px rgb(0 40 34 / 0.55);
+  box-shadow: 0 6px 20px -14px rgb(0 0 0 / 0.25);
 }
 .site-header .brand,
 .site-header .brand > span,
 .site-header .brand-small {
-  color: #fff;
+  color: var(--ink);
 }
 .site-header .brand-small {
-  opacity: 1;
+  opacity: 0.65;
 }
 .desktop-nav a {
-  color: #fff;
+  color: var(--ink);
   font-size: 14px;
   font-weight: 500;
 }
 .desktop-nav a.active {
-  color: #fff;
+  color: var(--brand);
 }
 .desktop-nav a:after {
   height: 2px;
-  background: var(--mint);
+  background: var(--brand);
 }
 .header-appointment {
   height: 44px;
   padding: 0 20px;
   border: 0;
   border-radius: 999px;
-  background: var(--mint);
-  color: var(--brand-deep);
+  background: var(--ink);
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
+  transition: background 0.3s;
 }
 .header-appointment:hover {
-  background: #fff;
-}
-.site-header .icon-button {
-  color: #fff;
-}
-.scroll-progress {
-  background: var(--mint);
-}
-.button-light {
-  background: var(--mint);
-  color: var(--brand-deep);
-}
-.button {
   background: var(--brand);
 }
+.site-header .icon-button {
+  color: var(--ink);
+  border-color: var(--line);
+}
+.scroll-progress {
+  background: var(--brand);
+}
+.button-light {
+  background: #fff;
+  color: var(--ink);
+}
+.button-light:hover {
+  background: var(--brand);
+  color: #fff;
+}
+.button {
+  background: var(--ink);
+}
 .button:hover {
-  background: var(--brand-deep);
+  background: var(--brand);
 }
 
 /* Arka katmanda küçük ışık yansımaları */
@@ -275,11 +280,11 @@ em {
 }
 
 .contact-section .text-link {
-  color: var(--mint);
+  color: #f2f0ee;
 }
 .contact-section .contact-heading > p:not(.eyebrow),
 .contact-section .contact-heading > p {
-  color: #e6f6f1;
+  color: #ded9d5;
 }
 
 .contact-section .eyebrow,
@@ -288,19 +293,20 @@ em {
 .contact-section label,
 .contact-section .form-note,
 .contact-section address {
-  color: #e6f6f1;
+  color: #ded9d5;
 }
 .pause-section .eyebrow,
 .pause-section p {
-  color: #e6f6f1;
+  color: #f0eeec;
 }
 
 .button.button-light {
-  background: var(--mint);
-  color: var(--brand-deep);
+  background: #fff;
+  color: var(--ink);
 }
 .button.button-light:hover {
-  background: #fff;
+  background: var(--brand);
+  color: #fff;
 }
 
 /* Sade, yavaş süzülen zemin */
@@ -317,8 +323,8 @@ em {
   background: radial-gradient(
     circle,
     rgb(255 255 255 / 0.95) 0 8%,
-    rgb(190 245 230 / 0.6) 30%,
-    rgb(0 150 125 / 0.16) 58%,
+    rgb(255 255 255 / 0.5) 30%,
+    rgb(194 58 53 / 0.14) 58%,
     transparent 72%
   );
 }

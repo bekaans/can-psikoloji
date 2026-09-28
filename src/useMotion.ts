@@ -145,7 +145,7 @@ export function useMotion(ready: boolean, reduced: boolean) {
           defaults: { ease: 'none' },
           scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
         })
-        .to('.hero-copy', { yPercent: -14, opacity: 0.15 }, 0)
+        .to('.hero-copy', { yPercent: -14, opacity: 0.55 }, 0)
         .to('.hero-image-frame', { scale: 0.9, yPercent: 6, transformOrigin: '50% 100%' }, 0);
       // Ara bölüm sabitlenir; halkalar genişler, başlık büyür.
       gsap
@@ -160,8 +160,13 @@ export function useMotion(ready: boolean, reduced: boolean) {
             anticipatePin: 1,
           },
         })
-        .fromTo('.pause-photo', { scale: 1.25 }, { scale: 1 }, 0)
-        .fromTo('.pause-copy h2', { yPercent: 30, opacity: 0.2 }, { yPercent: 0, opacity: 1 }, 0);
+        .fromTo('.pause-photo', { scale: 1.25 }, { scale: 1, duration: 1 }, 0)
+        .fromTo(
+          '.pause-copy h2',
+          { yPercent: 30, opacity: 0.2 },
+          { yPercent: 0, opacity: 1, duration: 0.15 },
+          0,
+        );
       // Hizmet kartları kenarlardan merkeze kayarak birleşir.
       gsap.utils.toArray<HTMLElement>('.service-card').forEach((el, i) =>
         gsap.fromTo(
@@ -260,17 +265,21 @@ export function useMotion(ready: boolean, reduced: boolean) {
           defaults: { ease: 'none' },
           scrollTrigger: trig('.hero', 'top top', 'bottom top'),
         })
-        .to('.hero-copy', { yPercent: -10, opacity: 0.25 }, 0)
+        .to('.hero-copy', { yPercent: -10, opacity: 0.55 }, 0)
         .to('.hero-image-frame', { scale: 0.92, yPercent: 4 }, 0);
-      gsap.utils
-        .toArray<HTMLElement>('.gallery-main, .team-photo')
-        .forEach((el) =>
-          gsap.fromTo(
-            el,
-            { scale: 0.9, opacity: 0.5 },
-            { scale: 1, opacity: 1, ease: 'none', scrollTrigger: trig(el, 'top 100%', 'top 55%') },
-          ),
-        );
+      gsap.utils.toArray<HTMLElement>('.gallery-main, .team-photo').forEach((el) =>
+        gsap.fromTo(
+          el,
+          { scale: 0.9, opacity: 0.5 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 100%', once: true },
+          },
+        ),
+      );
       gsap.utils
         .toArray<HTMLElement>('.services-grid, .team-grid')
         .forEach((el) =>
@@ -294,15 +303,27 @@ export function useMotion(ready: boolean, reduced: boolean) {
           defaults: { ease: 'none' },
           scrollTrigger: trig('.pause-section', 'top bottom', 'bottom top'),
         })
-        .fromTo('.pause-photo', { scale: 1.2 }, { scale: 1 }, 0)
-        .fromTo('.pause-copy h2', { yPercent: 20, opacity: 0.2 }, { yPercent: 0, opacity: 1 }, 0);
+        .fromTo('.pause-photo', { scale: 1.2 }, { scale: 1, duration: 1 }, 0)
+        .fromTo(
+          '.pause-copy h2',
+          { yPercent: 20, opacity: 0.2 },
+          { yPercent: 0, opacity: 1, duration: 0.15 },
+          0,
+        );
+      // Metin blokları bir kez belirir: kaydırma durursa yarım şeffaf kalmaz.
       gsap.utils
         .toArray<HTMLElement>('.about-details, .values-row > *, .faq-item, .contact-info')
         .forEach((el) =>
           gsap.fromTo(
             el,
-            { y: 30, opacity: 0.2 },
-            { y: 0, opacity: 1, ease: 'none', scrollTrigger: trig(el, 'top 100%', 'top 70%') },
+            { y: 30, opacity: 0.4 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: 'power2.out',
+              scrollTrigger: { trigger: el, start: 'top 100%', once: true },
+            },
           ),
         );
       return () => document.removeEventListener('click', onAnchor);
@@ -333,13 +354,14 @@ export function useMotion(ready: boolean, reduced: boolean) {
           scrub: true,
         },
       });
+      // Metin içeren bölümler bir kez ve hızlıca belirir: kaydırma durursa yarım şeffaf kalmaz.
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) =>
         gsap.from(el, {
           y: 35,
           opacity: 0,
-          duration: 0.85,
-          ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top 98%', end: 'top 62%', scrub: 0.9 },
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true },
         }),
       );
       gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) =>
@@ -370,16 +392,17 @@ export function useMotion(ready: boolean, reduced: boolean) {
           },
         }),
       );
-      // Yolculuk adımları kaydırdıkça aydınlanır.
+      // Yolculuk adımları bir kez belirir; okuma anında yarım şeffaf kalmaz.
       gsap.utils.toArray<HTMLElement>('.journey-step').forEach((el) =>
         gsap.fromTo(
           el,
-          { opacity: 0.28, y: 24 },
+          { opacity: 0.4, y: 24 },
           {
             opacity: 1,
             y: 0,
-            ease: 'none',
-            scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 52%', scrub: 0.7 },
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true },
           },
         ),
       );
@@ -407,15 +430,14 @@ export function useMotion(ready: boolean, reduced: boolean) {
             autoSplit: true,
             linesClass: 'split-line',
             onSplit: (self) =>
+              // Maskeli satırlar bir kez yükselir; kaydırma yarıda durursa satır kesik kalmaz.
               gsap.from(self.lines, {
                 yPercent: 115,
-                duration: 1.1,
-                ease: isHero ? 'power4.out' : 'none',
+                duration: 0.9,
+                ease: 'power4.out',
                 stagger: 0.09,
                 delay: isHero ? 0.1 : 0,
-                scrollTrigger: isHero
-                  ? undefined
-                  : { trigger: el, start: 'top 95%', end: 'top 50%', scrub: 0.9 },
+                scrollTrigger: isHero ? undefined : { trigger: el, start: 'top 92%', once: true },
               }),
           });
         });

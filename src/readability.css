@@ -1,24 +1,21 @@
 /* Keep body copy comfortable to read, including at narrow phone widths. */
 :root {
-  --muted: #237b79;
+  --muted: #524f4c;
 }
 .hero-footnote,
 .hero-image-caption,
 .hero-bottom,
 .about-details .small-label,
-.service-number,
 .service-card .small-label,
 .gallery-side > .small-label,
 .gallery-navigation > span,
 .team-meta .small-label,
-.journey-step > span,
 .journey-step p,
-.faq-number,
 .footer-bottom {
-  color: #247b79;
+  color: #534f4c;
 }
 .footer-top > p {
-  color: #247a77;
+  color: #524f4c;
 }
 .desktop-nav a {
   font-size: 12px;
@@ -55,7 +52,7 @@
   min-height: 395px;
 }
 .service-card .small-label {
-  font-size: 8px;
+  font-size: 11px;
 }
 .service-description {
   font-size: 12px;
@@ -64,13 +61,13 @@
   font-size: 10px;
 }
 .gallery-side > .small-label {
-  font-size: 8px;
+  font-size: 11px;
 }
 .gallery-side > .text-link {
   font-size: 12px;
 }
 .team-meta .small-label {
-  font-size: 9px;
+  font-size: 12px;
 }
 .team-focus {
   font-size: 10px;
@@ -107,7 +104,7 @@
   font-size: 12px;
 }
 .form-note {
-  font-size: 9px;
+  font-size: 12px;
 }
 .pause-copy > span {
   font-size: 12px;
@@ -155,7 +152,7 @@
     max-width: 350px;
   }
   .hero-footnote {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hero-copy {
     padding-top: 20px;
@@ -174,10 +171,10 @@
     font-size: 33px;
   }
   .gallery-side > .small-label {
-    font-size: 7px;
+    font-size: 11px;
   }
   .values-row > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hero-image-frame {
     clip-path: inset(0 round 150px 6px 6px 6px);
@@ -197,7 +194,7 @@
     font-size: 10px;
   }
   .hero-footnote {
-    font-size: 8px;
+    font-size: 11px;
   }
   .hero-image-frame {
     clip-path: inset(0 round 120px 6px 6px 6px);
@@ -212,7 +209,7 @@
     font-size: 12px;
   }
   .service-card .small-label {
-    font-size: 8px;
+    font-size: 11px;
   }
   .service-bottom {
     font-size: 10px;
@@ -230,7 +227,7 @@
     font-size: 24px;
   }
   .team-focus {
-    font-size: 9px;
+    font-size: 12px;
   }
   .contact-form-row .button {
     font-size: 11px;
@@ -244,7 +241,7 @@
 }
 @media (max-width: 650px) {
   .header-appointment {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hero-copy {
     padding-top: 0;
@@ -265,7 +262,7 @@
     font-size: 11px;
   }
   .hero-footnote {
-    font-size: 9px;
+    font-size: 12px;
     gap: 7px;
   }
   .hero-visual {
@@ -301,7 +298,7 @@
   }
   .service-card .small-label {
     margin-top: 37px;
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 1.4px;
   }
   .service-description {
@@ -336,13 +333,13 @@
     width: 19px;
   }
   .gallery-side > .small-label {
-    font-size: 8px;
+    font-size: 11px;
   }
   .gallery-side > .text-link {
     font-size: 12px;
   }
   .team-meta .small-label {
-    font-size: 9px;
+    font-size: 12px;
   }
   .team-focus {
     font-size: 10px;
@@ -391,10 +388,10 @@
     font-size: 11px;
   }
   .footer-bottom {
-    font-size: 9px;
+    font-size: 12px;
   }
   .footer-bottom button {
-    font-size: 9px;
+    font-size: 12px;
   }
   .footer-top > .back-to-top {
     font-size: 10px;
@@ -405,7 +402,7 @@
 }
 @media (max-width: 370px) {
   .header-appointment {
-    font-size: 8px;
+    font-size: 11px;
   }
   .hero h1 {
     font-size: 54px;
@@ -415,7 +412,7 @@
     font-size: 13px;
   }
   .hero-footnote {
-    font-size: 8px;
+    font-size: 11px;
   }
   .hero-ctas .button {
     font-size: 10px;
@@ -424,7 +421,7 @@
     font-size: 10px;
   }
   .values-row > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .faq-item h3 > button {
     font-size: 13px;
@@ -436,9 +433,9 @@
     font-size: 32px;
   }
   .footer-bottom {
-    font-size: 8px;
+    font-size: 11px;
   }
   .footer-bottom button {
-    font-size: 8px;
+    font-size: 11px;
   }
 }
