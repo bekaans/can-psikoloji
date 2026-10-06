@@ -47,6 +47,9 @@ export function createApp(config: Config) {
   const passport = new Passport();
   const origin = new URL(config.origin).origin;
   app.disable('x-powered-by');
+  app.use((req, res, next) =>
+    req.hostname.startsWith('www.') ? res.redirect(301, `${origin}${req.originalUrl}`) : next(),
+  );
   const legacyPages: Record<string, string> = {
     hakkimizda: 'yaklasim',
     hizmetlerimiz: 'alanlar',
@@ -63,6 +66,11 @@ export function createApp(config: Config) {
   for (const [slug, section] of Object.entries(legacyPages)) {
     app.get([`/index.php/${slug}`, `/${slug}`], (_req, res) => res.redirect(301, `/#${section}`));
   }
+  app.get(
+    ['/sitemap_index.xml', '/wp-sitemap.xml', '/page-sitemap.xml', '/index.php/page-sitemap.xml'],
+    (_req, res) => res.redirect(301, '/sitemap.xml'),
+  );
+  app.get('/index.php', (_req, res) => res.redirect(301, '/'));
   app.use('/admin', (_req, res, next) => {
     res.set('X-Robots-Tag', 'noindex, nofollow');
     next();
