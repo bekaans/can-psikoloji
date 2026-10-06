@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { randomBytes } from 'node:crypto';
@@ -12,7 +12,14 @@ import type { ContentEnvelope } from '../shared/content';
 test('İçerik yönetimi, güvenlik sınırları ve kalıcı kayıt', async (t) => {
   const dir = mkdtempSync(join(tmpdir(), 'can-psikoloji-test-'));
   const password = randomBytes(22).toString('base64url');
+  const distDir = join(dir, 'dist');
+  mkdirSync(distDir);
+  writeFileSync(
+    join(distDir, 'index.html'),
+    '<!doctype html><html><head><title>x</title><link rel="stylesheet" href="/assets/index-test.css"><script type="application/ld+json">{}</script></head><body><div id="root"></div></body></html>',
+  );
   const config = {
+    distDir,
     dataDir: dir,
     origin: 'http://127.0.0.1',
     secret: randomBytes(48).toString('hex'),
@@ -57,9 +64,23 @@ test('İçerik yönetimi, güvenlik sınırları ve kalıcı kayıt', async (t) 
       assert.equal(r.status, 200);
       original = (await r.json()) as ContentEnvelope;
       assert.equal(original.content.contact.phone, '905541406244');
-      const legacy = await fetch(base + '/index.php/bize-ulasin/', { redirect: 'manual' });
-      assert.equal(legacy.status, 301);
-      assert.equal(legacy.headers.get('location'), '/#iletisim');
+      const page = await fetch(base + '/index.php/bireysel-terapiler/');
+      const html = await page.text();
+      assert.equal(page.status, 200);
+      assert.match(html, /<h1>Bireysel Terapiler<\/h1>/);
+      assert.match(html, /<link rel="canonical" href="http:\/\/127\.0\.0\.1\/index\.php\/bireysel-terapiler\/">/);
+      assert.match(html, /<meta name="description" content="[^"]{80,}">/);
+      assert.match(html, /\/assets\/index-test\.css/);
+      const noSlash = await fetch(base + '/index.php/galeri', { redirect: 'manual' });
+      assert.equal(noSlash.status, 301);
+      assert.equal(noSlash.headers.get('location'), '/index.php/galeri/');
+      const home = await (await fetch(base + '/')).text();
+      assert.match(home, /"@type":\["LocalBusiness","ProfessionalService"\]/);
+      assert.match(home, /href="\/index\.php\/bize-ulasin\/"/);
+      const map = await (await fetch(base + '/sitemap.xml')).text();
+      assert.equal((map.match(/<loc>/g) || []).length, 12);
+      const oldMap = await fetch(base + '/sitemap_index.xml', { redirect: 'manual' });
+      assert.equal(oldMap.headers.get('location'), '/sitemap.xml');
       assert.equal(r.headers.get('x-frame-options'), 'DENY');
       assert.equal(r.headers.get('x-content-type-options'), 'nosniff');
       assert.match(r.headers.get('content-security-policy') || '', /frame-ancestors 'none'/);

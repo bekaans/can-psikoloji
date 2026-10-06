@@ -1,0 +1,201 @@
+/* Sunucuda üretilen içerik sayfaları (hizmet, uzman, iletişim...) */
+.seo-page {
+  background: var(--paper, #f5f2ef);
+  color: var(--ink, #2a2623);
+  line-height: 1.7;
+}
+.seo-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 28px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 22px 20px;
+}
+.seo-brand {
+  font: 46px/1 var(--serif, Georgia, serif);
+  letter-spacing: -2px;
+}
+.seo-brand span {
+  display: block;
+  font: 11px/1 var(--sans, sans-serif);
+  letter-spacing: 4px;
+  margin-top: 6px;
+}
+.seo-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  font-size: 14px;
+}
+.seo-nav a {
+  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+}
+.seo-nav a:hover,
+.seo-nav a[aria-current='page'] {
+  border-color: var(--brand, #c23a35);
+}
+.seo-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 20px 72px;
+}
+.seo-crumbs {
+  font-size: 13px;
+  color: var(--muted, #625d56);
+}
+.seo-crumbs a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.seo-main h1 {
+  font: 500 clamp(36px, 7vw, 64px) / 1.05 var(--serif, Georgia, serif);
+  margin: 18px 0 26px;
+}
+.seo-main h2 {
+  font: 500 clamp(24px, 4vw, 32px) / 1.2 var(--serif, Georgia, serif);
+  margin: 40px 0 12px;
+}
+.seo-lead {
+  font-size: 19px;
+  max-width: 720px;
+}
+.seo-prose p,
+.seo-prose li {
+  max-width: 720px;
+}
+.seo-prose p {
+  margin: 0 0 1.1em;
+}
+.seo-prose ul {
+  margin: 0 0 1.4em;
+  padding-left: 1.3em;
+}
+.seo-prose a,
+.seo-cards a,
+.seo-related a,
+.seo-footer a,
+.seo-contact a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.seo-main .button {
+  margin: 32px 0 8px;
+  text-decoration: none;
+  font-size: 13px;
+  background: var(--brand-deep, #a52d29);
+  color: #fff;
+}
+.seo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+.seo-tags li {
+  border: 1px solid var(--line, #d9d7d6);
+  border-radius: 40px;
+  padding: 4px 14px;
+  font-size: 14px;
+}
+.seo-cards,
+.seo-gallery {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+.seo-cards li {
+  display: flex;
+  gap: 20px;
+  border-top: 1px solid var(--line, #d9d7d6);
+  padding-top: 16px;
+}
+.seo-cards img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.seo-cards h2 {
+  margin-top: 0;
+}
+.seo-sub {
+  color: var(--muted, #625d56);
+  margin: 0;
+}
+.seo-gallery {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.seo-gallery img,
+.seo-portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+.seo-gallery figure,
+.seo-portrait {
+  margin: 0;
+}
+.seo-portrait {
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+.seo-gallery figcaption {
+  font-size: 14px;
+  color: var(--muted, #625d56);
+  padding-top: 6px;
+}
+.seo-related {
+  margin-top: 56px;
+  border-top: 1px solid var(--line, #d9d7d6);
+}
+.seo-contact dt {
+  font-weight: 600;
+  margin-top: 20px;
+}
+.seo-contact dd {
+  margin: 4px 0 0;
+}
+.seo-contact address {
+  font-style: normal;
+}
+.seo-footer {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 36px 20px 56px;
+  border-top: 1px solid var(--line, #d9d7d6);
+  display: grid;
+  gap: 18px 48px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  font-size: 14px;
+}
+.seo-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.seo-copy {
+  color: var(--muted, #625d56);
+}
+@media (max-width: 560px) {
+  .seo-cards li {
+    flex-direction: column;
+  }
+}
+/* Ana sayfada JavaScript açılana kadar görünen içerik */
+.seo-static {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  line-height: 1.7;
+}
+.seo-static .seo-nav {
+  margin-bottom: 24px;
+}

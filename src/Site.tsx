@@ -521,6 +521,24 @@ export default function Site() {
             Yukarı dön <ArrowUpRight size={18} />
           </a>
         </div>
+        <nav className="footer-links" aria-label="Tüm sayfalar">
+          {(
+            [
+              ['hakkimizda', 'Hakkımızda'],
+              ['bireysel-terapiler', 'Bireysel Terapiler'],
+              ['cocuk-ve-ergen-terapileri', 'Çocuk ve Ergen Terapileri'],
+              ['cift-ve-aile-terapileri', 'Çift ve Aile Terapileri'],
+              ['psikolojik-test-ve-degerlendirme', 'Psikolojik Test ve Değerlendirme'],
+              ['uzmanlarimiz-2', 'Uzmanlarımız'],
+              ['galeri', 'Galeri'],
+              ['bize-ulasin', 'İletişim'],
+            ] as const
+          ).map(([slug, label]) => (
+            <a key={slug} href={`/index.php/${slug}/`}>
+              {label}
+            </a>
+          ))}
+        </nav>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Can Psikoloji</span>
           <div>

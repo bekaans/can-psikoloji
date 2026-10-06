@@ -2747,3 +2747,14 @@ h2 em {
 .journey-section {
   background: transparent;
 }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 20px 0;
+  font-size: 14px;
+}
+.footer-links a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

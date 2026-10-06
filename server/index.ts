@@ -27,10 +27,11 @@ const { app, close } = createApp({
   passwordHash: process.env.ADMIN_PASSWORD_HASH!,
   production,
   trustProxy: process.env.TRUST_PROXY === '1',
+  distDir: production ? resolve('dist') : undefined,
 });
 if (production) {
   app.use(express.static(resolve('dist'), { index: false, maxAge: '1h' }));
-  app.get(['/', '/admin'], (_req, res) => {
+  app.get('/admin', (_req, res) => {
     res.set('Cache-Control', 'no-cache');
     res.sendFile(resolve('dist/index.html'));
   });

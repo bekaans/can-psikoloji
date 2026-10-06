@@ -13,6 +13,7 @@ import { mkdirSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { openDatabase, SqliteSessionStore } from './database';
 import { contentSchema } from '../shared/content';
+import { registerSeoRoutes } from './seo';
 
 declare global {
   namespace Express {
@@ -36,6 +37,7 @@ export type Config = {
   passwordHash: string;
   production: boolean;
   trustProxy: boolean;
+  distDir?: string;
 };
 
 export function createApp(config: Config) {
@@ -50,27 +52,6 @@ export function createApp(config: Config) {
   app.use((req, res, next) =>
     req.hostname.startsWith('www.') ? res.redirect(301, `${origin}${req.originalUrl}`) : next(),
   );
-  const legacyPages: Record<string, string> = {
-    hakkimizda: 'yaklasim',
-    hizmetlerimiz: 'alanlar',
-    'bireysel-terapiler': 'alanlar',
-    'cocuk-ve-ergen-terapileri': 'alanlar',
-    'cift-ve-aile-terapileri': 'alanlar',
-    'psikolojik-test-ve-degerlendirme': 'alanlar',
-    'uzmanlarimiz-2': 'uzmanlar',
-    'psikolojik-danisman-psikoterapist-nurcan-ilkan': 'uzmanlar',
-    'psikolog-basak-canturk': 'uzmanlar',
-    galeri: 'merkez',
-    'bize-ulasin': 'iletisim',
-  };
-  for (const [slug, section] of Object.entries(legacyPages)) {
-    app.get([`/index.php/${slug}`, `/${slug}`], (_req, res) => res.redirect(301, `/#${section}`));
-  }
-  app.get(
-    ['/sitemap_index.xml', '/wp-sitemap.xml', '/page-sitemap.xml', '/index.php/page-sitemap.xml'],
-    (_req, res) => res.redirect(301, '/sitemap.xml'),
-  );
-  app.get('/index.php', (_req, res) => res.redirect(301, '/'));
   app.use('/admin', (_req, res, next) => {
     res.set('X-Robots-Tag', 'noindex, nofollow');
     next();
@@ -189,6 +170,8 @@ export function createApp(config: Config) {
     return { content: JSON.parse(row.body), version: row.version, updatedAt: row.updated_at };
   };
   app.get('/api/content', (_req, res) => res.json(readContent()));
+  if (config.distDir)
+    registerSeoRoutes(app, { origin, distDir: config.distDir, read: readContent });
   app.get('/api/session', (req, res) => {
     req.session.csrf ||= randomBytes(32).toString('hex');
     res.json({
