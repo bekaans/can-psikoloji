@@ -49,6 +49,15 @@ export function createApp(config: Config) {
   const passport = new Passport();
   const origin = new URL(config.origin).origin;
   app.disable('x-powered-by');
+  // Her başlatmadan sonraki ilk yanıt, LiteSpeed önbelleğine eski sayfaları temizlemesini söyler.
+  let purgePending = true;
+  app.use((_req, res, next) => {
+    if (purgePending) {
+      purgePending = false;
+      res.set('X-LiteSpeed-Purge', '*');
+    }
+    next();
+  });
   app.use((req, res, next) =>
     req.hostname.startsWith('www.') ? res.redirect(301, `${origin}${req.originalUrl}`) : next(),
   );
