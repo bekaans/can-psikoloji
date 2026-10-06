@@ -2758,3 +2758,43 @@ h2 em {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Marka: yasal ad metin olarak gösterilir, logo kullanılmaz */
+.brand.brand-lockup {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.brand.brand-lockup > .brand-unit {
+  font: 600 10px/1.2 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.brand.brand-lockup > .brand-name {
+  font: 500 28px/1 var(--serif);
+  letter-spacing: -0.01em;
+}
+.loading-mark {
+  font-size: 52px;
+  line-height: 0.9;
+}
+@media (max-width: 560px) {
+  .brand.brand-lockup {
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: 150px;
+    gap: 4px;
+  }
+  .brand.brand-lockup > .brand-unit {
+    font-size: 7px;
+    letter-spacing: 0.08em;
+  }
+  .brand.brand-lockup > .brand-name {
+    font-size: 17px;
+    line-height: 1.05;
+  }
+  .loading-mark {
+    font-size: 40px;
+  }
+}

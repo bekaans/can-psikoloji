@@ -1,22 +1,12 @@
-export function LeafMark({ className = '' }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <path
-        d="M32 54V29M32 40C12 42 6 20 12 12c15 0 23 11 20 28ZM32 34C29 18 39 6 53 8c3 17-5 27-21 26Z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-      />
-      <path d="M32 40 18 20M32 34 47 15" stroke="currentColor" strokeWidth="1.1" />
-    </svg>
-  );
-}
 export function Brand() {
   return (
-    <a className="brand" href={import.meta.env.BASE_URL} aria-label="Can Psikoloji ana sayfa">
-      <LeafMark />
-      <span>
-        can<span className="brand-small">psikoloji</span>
-      </span>
+    <a
+      className="brand brand-lockup"
+      href={import.meta.env.BASE_URL}
+      aria-label="Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday ana sayfa"
+    >
+      <span className="brand-unit">Özel Sağlık Meslek Hizmet Birimi</span>
+      <span className="brand-name">Klinik Psikolog Nurcan Ayday</span>
     </a>
   );
 }

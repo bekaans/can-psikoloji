@@ -15,7 +15,8 @@ type PageDef = {
   description: string;
 };
 
-const BRAND = 'Can Psikoloji Danışmanlık Merkezi';
+const BRAND = 'Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday';
+const SHORT = 'Klinik Psikolog Nurcan Ayday';
 const legacyBodies = legacy as Record<string, string>;
 
 export const PAGES: PageDef[] = [
@@ -24,16 +25,16 @@ export const PAGES: PageDef[] = [
     kind: 'about',
     h1: 'Hakkımızda',
     crumb: 'Hakkımızda',
-    title: `Hakkımızda | Gebze Psikolojik Danışmanlık - ${BRAND}`,
+    title: `Hakkımızda | Gebze Psikoterapi - ${SHORT}`,
     description:
-      'Can Psikoloji Danışmanlık ve Eğitim Merkezi’nin misyonu, değerleri ve çalışma biçimi. 2018’den beri Gebze’de bireylere, çocuklara, ergenlere, çiftlere ve ailelere hizmet veriyoruz.',
+      'Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday’ın misyonu, değerleri ve çalışma biçimi. 2018’den beri Gebze’de bireylere, çocuklara, ergenlere, çiftlere ve ailelere hizmet veriyoruz.',
   },
   {
     slug: 'hizmetlerimiz',
     kind: 'services',
     h1: 'Hizmetlerimiz',
     crumb: 'Hizmetlerimiz',
-    title: `Hizmetlerimiz | Gebze Terapi ve Psikolojik Test - ${BRAND}`,
+    title: `Hizmetlerimiz | Gebze Terapi ve Psikolojik Test - ${SHORT}`,
     description:
       'Gebze’de bireysel terapi, çocuk ve ergen terapisi, çift ve aile terapisi ile psikolojik test ve değerlendirme hizmetleri. Randevu için WhatsApp’tan yazabilirsiniz.',
   },
@@ -43,9 +44,9 @@ export const PAGES: PageDef[] = [
     ref: 'bireysel-terapi',
     h1: 'Bireysel Terapiler',
     crumb: 'Bireysel Terapiler',
-    title: `Bireysel Terapiler | Gebze Psikolog - ${BRAND}`,
+    title: `Bireysel Terapiler | Gebze Psikolog - ${SHORT}`,
     description:
-      'Gebze’de bireysel terapi: amaçları, faydaları ve kimlere yardımcı olabileceği. Yetişkinler için psikoterapi sürecini Can Psikoloji uzmanlarından öğrenin ve randevu alın.',
+      'Gebze’de bireysel psikoterapi: amaçları, faydaları ve kimlere yardımcı olabileceği. Yetişkinler için terapi sürecini Klinik Psikolog Nurcan Ayday’dan öğrenin, arayın veya WhatsApp’tan randevu alın.',
   },
   {
     slug: 'cocuk-ve-ergen-terapileri',
@@ -53,9 +54,9 @@ export const PAGES: PageDef[] = [
     ref: 'cocuk-ergen',
     h1: 'Çocuk ve Ergen Terapileri',
     crumb: 'Çocuk ve Ergen Terapileri',
-    title: `Çocuk ve Ergen Terapileri | Gebze Çocuk Psikoloğu - ${BRAND}`,
+    title: `Çocuk ve Ergen Terapileri | Gebze Oyun Terapisi - ${SHORT}`,
     description:
-      'Gebze’de çocuk ve ergen terapisi: oyun terapisi, bilişsel davranışçı terapi ve aile görüşmeleri. Çocuğunuzun gelişim dönemine uygun destek için Can Psikoloji’ye ulaşın.',
+      'Gebze’de çocuk oyun terapisi, ergen psikoterapisi ve EMDR uygulamaları. Çocuğunuzun gelişim dönemine uygun destek için arayın veya WhatsApp’tan yazın.',
   },
   {
     slug: 'cift-ve-aile-terapileri',
@@ -63,7 +64,7 @@ export const PAGES: PageDef[] = [
     ref: 'cift-aile',
     h1: 'Çift ve Aile Terapileri',
     crumb: 'Çift ve Aile Terapileri',
-    title: `Çift ve Aile Terapileri | Gebze Aile Danışmanlığı - ${BRAND}`,
+    title: `Çift ve Aile Terapileri | Gebze - ${SHORT}`,
     description:
       'Gebze’de çift ve aile terapisi: evlilik problemleri, iletişim güçlükleri, boşanma süreci ve ebeveynlik becerileri için uzman desteği. Randevu için hemen yazın.',
   },
@@ -73,18 +74,18 @@ export const PAGES: PageDef[] = [
     ref: 'test-degerlendirme',
     h1: 'Psikolojik Test ve Değerlendirme',
     crumb: 'Psikolojik Test ve Değerlendirme',
-    title: `Psikolojik Test ve Değerlendirme | Gebze WISC-IV, CAS, Moxo - ${BRAND}`,
+    title: `Psikolojik Test ve Değerlendirme | WISC-IV, CAS, Moxo - Gebze`,
     description:
-      'Gebze’de psikolojik test ve değerlendirme: WISC-IV zeka testi, CAS testi ve Moxo Dikkat Testi. Moxo Türkiye anlaşmalı uygulama merkeziyiz.',
+      'Gebze’de psikolojik test ve değerlendirme: WISC-IV zeka testi, CAS testi ve Moxo Dikkat Testi. Randevu için arayın veya WhatsApp’tan yazın.',
   },
   {
     slug: 'uzmanlarimiz-2',
     kind: 'team',
     h1: 'Uzmanlarımız',
     crumb: 'Uzmanlarımız',
-    title: `Uzmanlarımız | Gebze Psikolog ve Psikoterapistler - ${BRAND}`,
+    title: `Uzmanlarımız | Gebze Psikologlar - ${SHORT}`,
     description:
-      'Can Psikoloji uzman kadrosu: Klinik Psikolog Nurcan İlkan Ayday ve Psikolog Başak Cantürk. Eğitimleri, deneyimleri ve çalışma alanları.',
+      'Klinik Psikolog Nurcan Ayday ve Psikolog Başak Cantürk: eğitimleri, deneyimleri ve çalışma alanları.',
   },
   {
     slug: 'psikolojik-danisman-psikoterapist-nurcan-ilkan',
@@ -92,7 +93,7 @@ export const PAGES: PageDef[] = [
     ref: 'nurcan-ayday',
     h1: 'Klinik Psikolog Nurcan İlkan Ayday',
     crumb: 'Nurcan İlkan Ayday',
-    title: `Klinik Psikolog Nurcan İlkan Ayday - ${BRAND}`,
+    title: `Klinik Psikolog Nurcan İlkan Ayday | Gebze Psikoterapi`,
     description:
       'Klinik Psikolog Nurcan İlkan Ayday: eğitimleri, deneyimi ve çalışma alanları. Gebze’de bireysel psikoterapi, çocuk ve ergen terapisi için randevu alın.',
   },
@@ -102,7 +103,7 @@ export const PAGES: PageDef[] = [
     ref: 'basak-canturk',
     h1: 'Psikolog Başak Cantürk',
     crumb: 'Başak Cantürk',
-    title: `Psikolog Başak Cantürk - ${BRAND}`,
+    title: `Psikolog Başak Cantürk | Gebze Çocuk ve Ergen Psikoloğu`,
     description:
       'Psikolog Başak Cantürk: çocuk merkezli oyun terapisi, EMDR ve psikolojik değerlendirme eğitimleri. Gebze’de çocuk ve ergen görüşmeleri için randevu alın.',
   },
@@ -111,20 +112,63 @@ export const PAGES: PageDef[] = [
     kind: 'gallery',
     h1: 'Galeri',
     crumb: 'Galeri',
-    title: `Galeri | Merkezimizden Görüntüler - ${BRAND}`,
+    title: `Galeri | Gebze - ${SHORT}`,
     description:
-      'Can Psikoloji Danışmanlık Merkezi’nin Gebze’deki görüşme alanlarından ve ortamından fotoğraflar.',
+      'Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday’ın Gebze’deki görüşme alanlarından ve ortamından fotoğraflar.',
   },
   {
     slug: 'bize-ulasin',
     kind: 'contact',
     h1: 'İletişim',
     crumb: 'İletişim',
-    title: `İletişim | Gebze Psikolog Randevu - ${BRAND}`,
+    title: `İletişim | Gebze Psikolog Randevu - ${SHORT}`,
     description:
-      'Can Psikoloji Danışmanlık Merkezi adres, telefon ve randevu bilgileri. Gebze / Kocaeli. WhatsApp’tan yazarak randevu planlayabilirsiniz.',
+      'Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday adres, telefon ve randevu bilgileri. Gebze / Kocaeli. Arayabilir veya WhatsApp’tan yazarak randevu planlayabilirsiniz.',
   },
 ];
+
+
+type PageOverride = NonNullable<SiteContent['pages']>[string];
+const withOverride = (def: PageDef, content: SiteContent): PageDef => {
+  const o = content.pages?.[def.slug];
+  return o ? { ...def, h1: o.h1, title: o.title, description: o.description } : def;
+};
+const pagesOf = (content: SiteContent) => PAGES.map((p) => withOverride(p, content));
+export function defaultPages(): Record<string, PageOverride> {
+  return Object.fromEntries(
+    PAGES.filter((p) => p.kind !== 'contact').map((p) => [
+      p.slug,
+      { h1: p.h1, title: p.title, description: p.description, body: legacyBodies[p.slug] ?? '' },
+    ]),
+  );
+}
+const renderText = (text: string): string => {
+  const out: string[] = [];
+  let para: string[] = [];
+  let list: string[] = [];
+  const flush = () => {
+    if (para.length) out.push(`<p>${para.map(esc).join('<br>')}</p>`);
+    if (list.length) out.push(`<ul>${list.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`);
+    para = [];
+    list = [];
+  };
+  for (const raw of text.split('\n')) {
+    const line = raw.trim();
+    if (!line) flush();
+    else if (line.startsWith('## ')) {
+      flush();
+      out.push(`<h2>${esc(line.slice(3))}</h2>`);
+    } else if (line.startsWith('- ')) {
+      if (para.length) flush();
+      list.push(line.slice(2));
+    } else {
+      if (list.length) flush();
+      para.push(line);
+    }
+  }
+  flush();
+  return out.join('\n');
+};
 
 export const pagePath = (slug: string) => `/index.php/${slug}/`;
 const bySlug = new Map(PAGES.map((p) => [p.slug, p]));
@@ -153,17 +197,16 @@ function nav(current?: string) {
 
 function servicePage(content: SiteContent, id: string) {
   const svc = content.services.find((s) => s.id === id);
-  const def = PAGES.find((p) => p.kind === 'service' && p.ref === id);
+  const def = pagesOf(content).find((p) => p.kind === 'service' && p.ref === id);
   return svc && def ? { svc, def } : null;
 }
 
 function businessSchema(content: SiteContent, origin: string) {
   const c = content.contact;
   return {
-    '@type': ['LocalBusiness', 'ProfessionalService'],
+    '@type': ['LocalBusiness', 'MedicalBusiness'],
     '@id': `${origin}/#business`,
     name: BRAND,
-    alternateName: 'Can Psikoloji',
     url: `${origin}/`,
     telephone: `+${c.phone}`,
     image: `${origin}${content.hero.image}`,
@@ -189,7 +232,7 @@ function businessSchema(content: SiteContent, origin: string) {
       image: `${origin}${t.image}`,
     })),
     makesOffer: content.services.map((s) => {
-      const page = PAGES.find((p) => p.kind === 'service' && p.ref === s.id);
+      const page = pagesOf(content).find((p) => p.kind === 'service' && p.ref === s.id);
       return {
         '@type': 'Offer',
         itemOffered: {
@@ -231,8 +274,7 @@ function breadcrumb(origin: string, def: PageDef) {
 function articleBody(def: PageDef, content: SiteContent, origin: string): string {
   const wa = whatsappLink(content, def.kind === 'service' ? def.h1.toLowerCase() : undefined);
   const cta = `<a class="button" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp ile randevu planlayın</a>`;
-  const body = legacyBodies[def.slug] ?? '';
-  const cleanBody = body.replace(/<br style[^>]*>/g, '').trim();
+  const cleanBody = renderText(content.pages?.[def.slug]?.body ?? legacyBodies[def.slug] ?? '');
   switch (def.kind) {
     case 'about':
       return `<p class="seo-lead">${esc(content.about.description)}</p>
@@ -243,7 +285,7 @@ function articleBody(def: PageDef, content: SiteContent, origin: string): string
       return `<p class="seo-lead">${esc(content.hero.description)}</p>
 <ul class="seo-cards">${content.services
         .map((s) => {
-          const page = PAGES.find((p) => p.kind === 'service' && p.ref === s.id);
+          const page = pagesOf(content).find((p) => p.kind === 'service' && p.ref === s.id);
           const heading = page
             ? `<a href="${pagePath(page.slug)}">${esc(page.h1)}</a>`
             : esc(s.title);
@@ -256,12 +298,12 @@ function articleBody(def: PageDef, content: SiteContent, origin: string): string
       const tags = sp
         ? `<ul class="seo-tags">${sp.svc.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`
         : '';
-      const others = PAGES.filter((p) => p.kind === 'service' && p.slug !== def.slug)
+      const others = pagesOf(content).filter((p) => p.kind === 'service' && p.slug !== def.slug)
         .map((p) => `<li><a href="${pagePath(p.slug)}">${esc(p.h1)}</a></li>`)
         .join('');
       const experts = content.team
         .map((t) => {
-          const page = PAGES.find((p) => p.kind === 'expert' && p.ref === t.id);
+          const page = pagesOf(content).find((p) => p.kind === 'expert' && p.ref === t.id);
           return `<li>${page ? `<a href="${pagePath(page.slug)}">${esc(t.name)}</a>` : esc(t.name)} · ${esc(t.role)}</li>`;
         })
         .join('');
@@ -270,10 +312,10 @@ function articleBody(def: PageDef, content: SiteContent, origin: string): string
 <aside class="seo-related"><h2>Diğer hizmetlerimiz</h2><ul>${others}</ul><h2>Uzmanlarımız</h2><ul>${experts}</ul></aside>`;
     }
     case 'team':
-      return `<p class="seo-lead">Can Psikoloji’de görüşmeleri alanında eğitimli psikologlar yürütür.</p>
+      return `<p class="seo-lead">Görüşmeleri alanında eğitimli psikologlar yürütür.</p>
 <ul class="seo-cards">${content.team
         .map((t) => {
-          const page = PAGES.find((p) => p.kind === 'expert' && p.ref === t.id);
+          const page = pagesOf(content).find((p) => p.kind === 'expert' && p.ref === t.id);
           return `<li><img src="${esc(t.image)}" alt="${esc(`${t.role} ${t.name}`)}" width="160" height="160" loading="lazy" decoding="async"><div><h2>${page ? `<a href="${pagePath(page.slug)}">${esc(`${t.role} ${t.name}`)}</a>` : esc(`${t.role} ${t.name}`)}</h2><p class="seo-sub">${esc(t.focus)}</p><p>${esc(t.bio)}</p></div></li>`;
         })
         .join('')}</ul>${cta}`;
@@ -283,7 +325,7 @@ function articleBody(def: PageDef, content: SiteContent, origin: string): string
         ? `<figure class="seo-portrait"><img src="${esc(t.image)}" alt="${esc(`${t.role} ${t.name}`)}" width="320" height="320" decoding="async"></figure><p class="seo-lead">${esc(t.bio)}</p>`
         : '';
       return `${head}<div class="seo-prose">${cleanBody}</div>${cta}
-<aside class="seo-related"><h2>Hizmetlerimiz</h2><ul>${PAGES.filter((p) => p.kind === 'service')
+<aside class="seo-related"><h2>Hizmetlerimiz</h2><ul>${pagesOf(content).filter((p) => p.kind === 'service')
         .map((p) => `<li><a href="${pagePath(p.slug)}">${esc(p.h1)}</a></li>`)
         .join('')}</ul></aside>`;
     }
@@ -364,6 +406,7 @@ export function renderPage(
   origin: string,
   template: string,
 ): string {
+  def = withOverride(def, content);
   const url = `${origin}${pagePath(def.slug)}`;
   const { css, icon } = head(template);
   const image = `${origin}${content.hero.image}`;
@@ -392,7 +435,7 @@ ${jsonLd(pageSchema(def, content, origin))}
 </head>
 <body class="seo-page">
 <a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="seo-header"><a class="seo-brand" href="/" aria-label="Can Psikoloji ana sayfa">can<span>psikoloji</span></a>${nav(pagePath(def.slug))}</header>
+<header class="seo-header"><a class="seo-brand" href="/" aria-label="${esc(BRAND)} ana sayfa"><small>Özel Sağlık Meslek Hizmet Birimi</small>${esc(SHORT)}</a>${nav(pagePath(def.slug))}</header>
 <main id="icerik" class="seo-main">
 <nav class="seo-crumbs" aria-label="Sayfa yolu"><a href="/">Ana sayfa</a>${
     def.kind === 'service'
@@ -408,10 +451,10 @@ ${articleBody(def, content, origin)}
 </main>
 <footer class="seo-footer">
 <p><strong>${esc(BRAND)}</strong><br>${esc(c.address)}<br><a href="tel:+${c.phone}">${esc(c.phoneDisplay)}</a></p>
-<ul>${PAGES.filter((p) => p.kind === 'service')
+<ul>${pagesOf(content).filter((p) => p.kind === 'service')
     .map((p) => `<li><a href="${pagePath(p.slug)}">${esc(p.h1)}</a></li>`)
     .join('')}</ul>
-<p class="seo-copy">© ${new Date().getFullYear()} Can Psikoloji</p>
+<p class="seo-copy">© ${new Date().getFullYear()} ${esc(BRAND)}</p>
 </footer>
 </body>
 </html>`;
@@ -435,13 +478,13 @@ export function renderHome(content: SiteContent, origin: string, template: strin
   const fallback = `<div class="seo-static"><header>${nav('/')}</header><main><h1>${esc(content.hero.title)} ${esc(content.hero.accent)}</h1><p>${esc(content.hero.description)}</p>
 <h2>Hizmetlerimiz</h2><ul>${content.services
     .map((s) => {
-      const page = PAGES.find((p) => p.kind === 'service' && p.ref === s.id);
+      const page = pagesOf(content).find((p) => p.kind === 'service' && p.ref === s.id);
       return `<li>${page ? `<a href="${pagePath(page.slug)}">${esc(page.h1)}</a>` : esc(s.title)}: ${esc(s.description)}</li>`;
     })
     .join('')}</ul>
 <h2>Uzmanlarımız</h2><ul>${content.team
     .map((t) => {
-      const page = PAGES.find((p) => p.kind === 'expert' && p.ref === t.id);
+      const page = pagesOf(content).find((p) => p.kind === 'expert' && p.ref === t.id);
       return `<li>${page ? `<a href="${pagePath(page.slug)}">${esc(`${t.role} ${t.name}`)}</a>` : esc(t.name)}</li>`;
     })
     .join('')}</ul>

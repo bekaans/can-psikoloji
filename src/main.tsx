@@ -12,7 +12,7 @@ function App() {
       fallback={
         <div className="loading-screen">
           <span className="loading-mark">
-            can<span>psikoloji</span>
+            Nurcan Ayday<span>Klinik Psikolog</span>
           </span>
           <i />
         </div>

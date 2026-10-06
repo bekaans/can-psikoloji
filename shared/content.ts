@@ -71,6 +71,22 @@ export const contentSchema = z
       .array(z.object({ id, question: text(200), answer: text(1000) }))
       .min(1)
       .max(20),
+    pages: z
+      .record(
+        z.string().regex(/^[a-z0-9-]{1,80}$/),
+        z.object({
+          h1: text(150),
+          title: text(160),
+          description: text(320),
+          body: z
+            .string()
+            .trim()
+            .max(12000)
+            .refine((v) => !/[<>\u0000-\u0008]/.test(v), 'HTML etiketleri kullanılamaz.'),
+        }),
+      )
+      .refine((v) => Object.keys(v).length <= 30, 'En fazla 30 sayfa tanımlanabilir.')
+      .optional(),
   })
   .strict()
   .superRefine((content, ctx) => {
@@ -89,9 +105,9 @@ export type SiteContent = z.infer<typeof contentSchema>;
 export type ContentEnvelope = { content: SiteContent; version: number; updatedAt: string };
 export const defaultContent: SiteContent = {
   hero: {
-    eyebrow: 'Can Psikoloji',
-    title: 'Gebze’de psikolojik',
-    accent: 'danışmanlık merkezi.',
+    eyebrow: 'Özel Sağlık Meslek Hizmet Birimi',
+    title: 'Gebze’de psikoterapi ve',
+    accent: 'klinik psikolog desteği.',
     description:
       'Bireysel terapi, çocuk ve ergen, çift ve aile görüşmeleri ile psikolojik test ve değerlendirme. Randevu için WhatsApp’tan yazabilirsiniz.',
     image: '/images/merkez-ana.webp',
@@ -99,7 +115,7 @@ export const defaultContent: SiteContent = {
   about: {
     title: 'Görüşmeler, ihtiyacınıza ve hızınıza göre planlanır.',
     description:
-      'Can Psikoloji’de yetişkinlerle, çocuk ve ergenlerle, çiftler ve ailelerle çalışıyoruz. İlk görüşmede sizi buraya getiren konuyu dinler, nasıl bir süreç izleyeceğimizi birlikte belirleriz.',
+      'Birimimizde yetişkinlerle, çocuk ve ergenlerle, çiftler ve ailelerle çalışıyoruz. İlk görüşmede sizi buraya getiren konuyu dinler, nasıl bir süreç izleyeceğimizi birlikte belirleriz.',
     note: '2018’den beri Gebze’de.',
   },
   contact: {
@@ -156,7 +172,7 @@ export const defaultContent: SiteContent = {
       role: 'Klinik Psikolog',
       image: '/images/nurcan-ayday.webp',
       focus: 'Bireysel · Çocuk · Ergen',
-      bio: 'Atatürk Üniversitesi Psikolojik Danışmanlık ve Rehberlik lisansının ardından İstanbul Kent Üniversitesi’nde Klinik Psikoloji yüksek lisansını tamamladı. Bütüncül psikoterapi, deneyimsel oyun terapisi ve çocuk merkezli oyun terapisi alanlarında eğitimler aldı. 2018 yılında Can Psikoloji’yi kurdu.',
+      bio: 'Atatürk Üniversitesi Psikolojik Danışmanlık ve Rehberlik lisansının ardından İstanbul Kent Üniversitesi’nde Klinik Psikoloji yüksek lisansını tamamladı. Bütüncül psikoterapi, deneyimsel oyun terapisi ve çocuk merkezli oyun terapisi alanlarında eğitimler aldı. 2018 yılında Gebze’de çalışmalarına başladı; Şubat 2026’dan itibaren Özel Sağlık Meslek Hizmet Birimi olarak hizmet vermektedir.',
     },
     {
       id: 'basak-canturk',

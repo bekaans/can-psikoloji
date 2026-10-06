@@ -20,7 +20,7 @@ import {
   MoveUpRight,
 } from 'lucide-react';
 import { type SiteContent, type ContentEnvelope, whatsappLink } from '../shared/content';
-import { Brand, LeafMark, WhatsAppIcon } from './Brand';
+import { Brand, WhatsAppIcon } from './Brand';
 import { request } from './api';
 import { useMotion, scrollToId } from './useMotion';
 import { TouchGlow } from './TouchGlow';
@@ -134,7 +134,6 @@ export default function Site() {
   if (error)
     return (
       <main className="load-error">
-        <LeafMark />
         <h1>Birazdan yeniden buluşalım.</h1>
         <p>{error}</p>
         <button className="button" onClick={() => location.reload()}>
@@ -146,7 +145,7 @@ export default function Site() {
     return (
       <div className="loading-screen">
         <span className="loading-mark">
-          can<span>psikoloji</span>
+          Nurcan Ayday<span>Klinik Psikolog</span>
         </span>
         <i />
       </div>
@@ -209,7 +208,7 @@ export default function Site() {
               <img
                 className="hero-photo"
                 src={content.hero.image}
-                alt="Can Psikoloji merkezinin gün ışığı alan görüşme odası"
+                alt="Gün ışığı alan görüşme odası"
                 fetchPriority="high"
                 width="1600"
                 height="1200"
@@ -540,7 +539,7 @@ export default function Site() {
           ))}
         </nav>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Can Psikoloji</span>
+          <span>© {new Date().getFullYear()} Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday</span>
           <div>
             <button onClick={() => setModal({ kind: 'privacy' })}>Gizlilik</button>
             <button

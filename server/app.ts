@@ -13,7 +13,7 @@ import { mkdirSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { openDatabase, SqliteSessionStore } from './database';
 import { contentSchema } from '../shared/content';
-import { registerSeoRoutes } from './seo';
+import { registerSeoRoutes, defaultPages } from './seo';
 
 declare global {
   namespace Express {
@@ -169,6 +169,15 @@ export function createApp(config: Config) {
     };
     return { content: JSON.parse(row.body), version: row.version, updatedAt: row.updated_at };
   };
+  {
+    const { content } = readContent();
+    if (!content.pages) {
+      db.prepare('UPDATE content SET body=?, version=version+1, updated_at=? WHERE id=1').run(
+        JSON.stringify({ ...content, pages: defaultPages() }),
+        new Date().toISOString(),
+      );
+    }
+  }
   app.get('/api/content', (_req, res) => res.json(readContent()));
   if (config.distDir)
     registerSeoRoutes(app, { origin, distDir: config.distDir, read: readContent });

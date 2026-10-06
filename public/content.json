@@ -1,15 +1,15 @@
 {
   "hero": {
-    "eyebrow": "Can Psikoloji",
-    "title": "Gebze’de psikolojik",
-    "accent": "danışmanlık merkezi.",
-    "description": "Bireysel terapi, çocuk ve ergen, çift ve aile görüşmeleri ile psikolojik test ve değerlendirme. Randevu için WhatsApp’tan yazabilirsiniz.",
+    "eyebrow": "Özel Sağlık Meslek Hizmet Birimi",
+    "title": "Gebze’de psikoterapi ve",
+    "accent": "klinik psikolog desteği.",
+    "description": "Bireysel psikoterapi, çocuk oyun terapisi, ergen psikoterapisi, çift ve aile terapisi, EMDR ve psikolojik testler. Randevu için arayabilir veya WhatsApp’tan yazabilirsiniz.",
     "image": "/images/merkez-ana.webp"
   },
   "about": {
     "title": "Görüşmeler, ihtiyacınıza ve hızınıza göre planlanır.",
-    "description": "Can Psikoloji’de yetişkinlerle, çocuk ve ergenlerle, çiftler ve ailelerle çalışıyoruz. İlk görüşmede sizi buraya getiren konuyu dinler, nasıl bir süreç izleyeceğimizi birlikte belirleriz.",
-    "note": "2018’den beri Gebze’de."
+    "description": "Birimimizde yetişkinlerle, çocuk ve ergenlerle, çiftler ve ailelerle çalışıyoruz. İlk görüşmede sizi buraya getiren konuyu dinler, nasıl bir süreç izleyeceğimizi birlikte belirleriz.",
+    "note": "2018’de Can Psikoloji olarak başladık. Şubat 2026’dan itibaren Sağlık Bakanlığı’na bağlıyız ve adımız zorunlu olarak değişti."
   },
   "contact": {
     "phone": "905541406244",
@@ -39,7 +39,8 @@
       "description": "Her çocuğun ve gencin dünyası kendine özgüdür. Gelişim dönemine ve ihtiyaçlarına uygun bir yaklaşım içinde, aileyle iş birliğini önemseyerek ilerliyoruz.",
       "tags": [
         "Oyun terapisi",
-        "Ergenlik",
+        "Ergen psikoterapisi",
+        "EMDR",
         "Ebeveynlik"
       ],
       "icon": "sprout"
@@ -62,9 +63,9 @@
       "subtitle": "Psikolojik değerlendirme",
       "description": "İhtiyaç doğrultusunda seçilen psikolojik değerlendirme araçlarıyla süreci destekliyoruz. Uygun test ve değerlendirme planı, uzman görüşmesi sonrasında belirlenir.",
       "tags": [
-        "Dikkat",
-        "Gelişim",
-        "Değerlendirme"
+        "WISC-IV",
+        "CAS",
+        "Moxo dikkat testi"
       ],
       "icon": "sparkles"
     }
@@ -74,7 +75,7 @@
       "id": "nurcan-ayday",
       "name": "Nurcan İlkan Ayday",
       "role": "Klinik Psikolog",
-      "bio": "Atatürk Üniversitesi Psikolojik Danışmanlık ve Rehberlik lisansının ardından İstanbul Kent Üniversitesi’nde Klinik Psikoloji yüksek lisansını tamamladı. Bütüncül psikoterapi, deneyimsel oyun terapisi ve çocuk merkezli oyun terapisi alanlarında eğitimler aldı. 2018 yılında Can Psikoloji’yi kurdu.",
+      "bio": "Atatürk Üniversitesi Psikolojik Danışmanlık ve Rehberlik lisansının ardından İstanbul Kent Üniversitesi’nde Klinik Psikoloji yüksek lisansını tamamladı. Bütüncül psikoterapi, deneyimsel oyun terapisi ve çocuk merkezli oyun terapisi alanlarında eğitimler aldı. 2018 yılında Gebze’de çalışmalarına başladı; Şubat 2026’dan itibaren Özel Sağlık Meslek Hizmet Birimi olarak hizmet vermektedir.",
       "image": "/images/nurcan-ayday.webp",
       "focus": "Bireysel · Çocuk · Ergen"
     },

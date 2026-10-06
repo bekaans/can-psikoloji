@@ -1,6 +1,6 @@
-# Can Psikoloji
+# Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday
 
-Can Psikoloji için krem ve zeytin yeşili tonlarında, fotoğraf ve tipografi odaklı web sitesi; kalıcı içerik yönetim paneliyle birlikte. Astra projesinden bağımsızdır.
+Klinik Psikolog Nurcan Ayday için krem ve zeytin yeşili tonlarında, fotoğraf ve tipografi odaklı web sitesi; kalıcı içerik yönetim paneliyle birlikte. Astra projesinden bağımsızdır.
 
 ## Yerelde çalıştırma
 

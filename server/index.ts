@@ -42,7 +42,7 @@ if (production) {
   app.use(vite.middlewares);
 }
 const server = app.listen(port, process.env.HOST || '127.0.0.1', () =>
-  console.log(`Can Psikoloji: ${origin} · Yönetim: ${origin}/admin`),
+  console.log(`Klinik Psikolog Nurcan Ayday: ${origin} · Yönetim: ${origin}/admin`),
 );
 let stopping = false;
 for (const signal of ['SIGINT', 'SIGTERM'] as const)

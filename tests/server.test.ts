@@ -75,7 +75,7 @@ test('İçerik yönetimi, güvenlik sınırları ve kalıcı kayıt', async (t) 
       assert.equal(noSlash.status, 301);
       assert.equal(noSlash.headers.get('location'), '/index.php/galeri/');
       const home = await (await fetch(base + '/')).text();
-      assert.match(home, /"@type":\["LocalBusiness","ProfessionalService"\]/);
+      assert.match(home, /"@type":\["LocalBusiness","MedicalBusiness"\]/);
       assert.match(home, /href="\/index\.php\/bize-ulasin\/"/);
       const map = await (await fetch(base + '/sitemap.xml')).text();
       assert.equal((map.match(/<loc>/g) || []).length, 12);
@@ -215,11 +215,20 @@ test('İçerik yönetimi, güvenlik sınırları ve kalıcı kayıt', async (t) 
       const content = structuredClone(original.content);
       content.hero.title = 'Test başlığı';
       content.hero.image = imagePath;
+      content.pages!['galeri'].title = 'Özel galeri başlığı';
+      content.pages!['bireysel-terapiler'].body = '## Yeni alt başlık\n\nYeni <b>paragraf</b>';
+      assert.equal((await call('/api/admin/content', 'PUT', { content, version: original.version })).status, 400);
+      content.pages!['bireysel-terapiler'].body = '## Yeni alt başlık\n\nYeni paragraf\n\n- madde bir';
       const save = await call('/api/admin/content', 'PUT', { content, version: original.version });
       assert.equal(save.status, 200);
       const data = (await save.json()) as ContentEnvelope;
       assert.equal(data.version, original.version + 1);
       assert.equal(data.content.hero.title, 'Test başlığı');
+      const edited = await (await fetch(base + '/index.php/bireysel-terapiler/')).text();
+      assert.match(edited, /<h2>Yeni alt başlık<\/h2>/);
+      assert.match(edited, /<li>madde bir<\/li>/);
+      const gal = await (await fetch(base + '/index.php/galeri/')).text();
+      assert.match(gal, /<title>Özel galeri başlığı<\/title>/);
       assert.equal(
         (await call('/api/admin/content', 'PUT', { content, version: original.version })).status,
         409,

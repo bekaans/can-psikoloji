@@ -43,7 +43,7 @@ test('Masaüstü: gezinme, hizmetler, uzmanlar, galeri, sorular ve WhatsApp', as
     if (m.type() === 'error') errors.push(m.text());
   });
   await page.goto('/');
-  await expect(page.locator('h1')).toHaveText('Gebze’de psikolojikdanışmanlık merkezi.');
+  await expect(page.locator('h1')).toHaveText('Gebze’de psikoterapi veklinik psikolog desteği.');
   await page.waitForTimeout(1600);
   await page.screenshot({ path: 'artifacts/desktop-home.png' });
   for (const id of ['yaklasim', 'alanlar', 'merkez', 'uzmanlar', 'sorular', 'iletisim']) {
@@ -177,7 +177,7 @@ test('Yönetim: güvenli giriş, kalıcı yayın, sürüm geri yükleme, fotoğr
   await publicPage.close();
   await page.getByRole('button', { name: 'İçerik geçmişi', exact: true }).click();
   await page.getByRole('button', { name: 'Geri yükle', exact: true }).first().click();
-  await expect(page.getByLabel('Ana başlık', { exact: true })).toHaveValue('Gebze’de psikolojik');
+  await expect(page.getByLabel('Ana başlık', { exact: true })).toHaveValue('Gebze’de psikoterapi ve');
   await page.getByRole('button', { name: 'Değişiklikleri yayınla', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Değişiklikler yayınlandı');
   await page.getByRole('button', { name: 'Fotoğraf galerisi', exact: true }).click();

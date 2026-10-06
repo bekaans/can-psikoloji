@@ -21,17 +21,18 @@ import {
   Leaf,
   MessageCircle,
   HelpCircle,
+  Search,
   RefreshCw,
   Menu,
   X,
 } from 'lucide-react';
-import { Brand, LeafMark } from './Brand';
+import { Brand } from './Brand';
 import { request } from './api';
 import { contentSchema, type SiteContent, type ContentEnvelope } from '../shared/content';
 import './admin.css';
 
 type Session = { user: { username: string; role: string } | null; csrf: string };
-type Tab = 'overview' | 'page' | 'services' | 'team' | 'gallery' | 'faqs' | 'settings' | 'history';
+type Tab = 'overview' | 'page' | 'services' | 'team' | 'gallery' | 'faqs' | 'seo' | 'settings' | 'history';
 const tabs: { id: Tab; title: string; icon: typeof LayoutDashboard }[] = [
   { id: 'overview', title: 'Genel bakış', icon: LayoutDashboard },
   { id: 'page', title: 'Ana sayfa', icon: FileText },
@@ -39,16 +40,18 @@ const tabs: { id: Tab; title: string; icon: typeof LayoutDashboard }[] = [
   { id: 'team', title: 'Uzmanlar', icon: Users },
   { id: 'gallery', title: 'Fotoğraf galerisi', icon: Images },
   { id: 'faqs', title: 'Sık sorulan sorular', icon: HelpCircle },
+  { id: 'seo', title: 'Sayfa metinleri (SEO)', icon: Search },
   { id: 'settings', title: 'İletişim bilgileri', icon: Settings },
   { id: 'history', title: 'İçerik geçmişi', icon: History },
 ];
 const descriptions: Record<Tab, string> = {
-  overview: 'Merkezinizin dijital alanı, sizin kontrolünüzde.',
+  overview: 'Biriminizin dijital alanı, sizin kontrolünüzde.',
   page: 'Ziyaretçilerinizi karşılayan metinleri ve fotoğrafı düzenleyin.',
   services: 'Çalışma alanlarınızı ve açıklamalarını yönetin.',
   team: 'Uzman profillerini, öz geçmişleri ve fotoğrafları güncelleyin.',
-  gallery: 'Merkezinizin atmosferini gerçek fotoğraflarla paylaşın.',
+  gallery: 'Biriminizin atmosferini gerçek fotoğraflarla paylaşın.',
   faqs: 'Ziyaretçilerinizin merak ettiği soruları yanıtlayın.',
+  seo: 'Google’da görünen başlık ve açıklamaları, ayrıntı sayfalarındaki metinleri düzenleyin.',
   settings: 'Telefon, WhatsApp, adres ve harita bilgilerinizi güncelleyin.',
   history: 'Önceki içerikleri inceleyin ve gerektiğinde geri yükleyin.',
 };
@@ -64,6 +67,7 @@ function Field({
   maxLength = 500,
   help,
   type = 'text',
+  rows = 4,
 }: {
   label: string;
   value: string;
@@ -72,13 +76,14 @@ function Field({
   maxLength?: number;
   help?: string;
   type?: string;
+  rows?: number;
 }) {
   return (
     <label className="admin-field">
       <span>{label}</span>
       {large ? (
         <textarea
-          rows={4}
+          rows={rows}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           maxLength={maxLength}
@@ -253,7 +258,7 @@ export default function Admin() {
   );
   const dirty = !!draft && !!snapshot && JSON.stringify(draft) !== JSON.stringify(snapshot.content);
   useEffect(() => {
-    document.title = 'Yönetim · Can Psikoloji';
+    document.title = 'Yönetim · Nurcan Ayday';
     document.documentElement.dataset.calm = 'true';
     const meta = document.createElement('meta');
     meta.name = 'robots';
@@ -407,12 +412,11 @@ export default function Admin() {
               <em>özen ister.</em>
             </h1>
             <p>
-              Merkezinizin dijital kapısını
+              Biriminizin dijital kapısını
               <br />
               birlikte açık tutuyoruz.
             </p>
           </div>
-          <LeafMark className="login-leaf" />
           <span className="small-label">ÖZENLE, İNSAN İÇİN.</span>
         </div>
         <div className="login-form-side">
@@ -420,9 +424,6 @@ export default function Admin() {
             Siteye dön <ArrowUpRight size={15} />
           </a>
           <form className="login-form" onSubmit={login}>
-            <span className="login-symbol">
-              <LeafMark />
-            </span>
             <p className="eyebrow">YENİDEN HOŞ GELDİNİZ</p>
             <h2>Yönetim paneli</h2>
             <p>Sitenizi düzenlemek için güvenli giriş yapın.</p>
@@ -559,7 +560,7 @@ export default function Admin() {
             >
               <Menu size={21} />
             </button>
-            <span>Can Psikoloji</span>
+            <span>Nurcan Ayday</span>
             <span className="topbar-slash">/</span>
             <strong>{tabs.find((t) => t.id === tab)?.title}</strong>
           </div>
@@ -1082,6 +1083,54 @@ export default function Admin() {
               </button>
             </>
           )}
+          {tab === 'seo' && (
+            <>
+              {Object.entries(draft.pages ?? {}).map(([slug, page]) => {
+                const set = (patch: Partial<typeof page>) =>
+                  update('pages', { ...draft.pages, [slug]: { ...page, ...patch } });
+                return (
+                  <Panel
+                    key={slug}
+                    title={page.h1}
+                    description={`Adres: /index.php/${slug}/`}
+                  >
+                    <Field
+                      label="Sayfa başlığı (H1)"
+                      value={page.h1}
+                      maxLength={150}
+                      onChange={(v) => set({ h1: v })}
+                    />
+                    <Field
+                      label="Google başlığı (title)"
+                      value={page.title}
+                      maxLength={160}
+                      help={`${page.title.length} karakter. Google’da yaklaşık ilk 60 karakter görünür.`}
+                      onChange={(v) => set({ title: v })}
+                    />
+                    <Field
+                      label="Google açıklaması (description)"
+                      large
+                      rows={3}
+                      value={page.description}
+                      maxLength={320}
+                      help={`${page.description.length} karakter. 120–160 karakter idealdir.`}
+                      onChange={(v) => set({ description: v })}
+                    />
+                    <Field
+                      label="Sayfa metni"
+                      large
+                      rows={14}
+                      value={page.body}
+                      maxLength={12000}
+                      help="Paragraflar arasında boş satır bırakın. ‘## ’ ile başlayan satır alt başlık, ‘- ’ ile başlayan satır madde olur."
+                      onChange={(v) => set({ body: v })}
+                    />
+                  </Panel>
+                );
+              })}
+              {!draft.pages && <p>Sayfa metinleri sunucu yeniden başladığında burada görünür.</p>}
+            </>
+          )}
           {tab === 'settings' && (
             <>
               <Panel title="Telefon & WhatsApp">
@@ -1159,10 +1208,7 @@ export default function Admin() {
             </Panel>
           )}
           <div className="admin-bottom-note">
-            <LeafMark />
-            <span>
-              Can Psikoloji · İçeriğinize gösterdiğiniz özen, ilk karşılaşmanın bir parçası.
-            </span>
+            <span>İçeriğinize gösterdiğiniz özen, ilk karşılaşmanın bir parçasıdır.</span>
           </div>
         </main>
       </div>

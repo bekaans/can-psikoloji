@@ -15,14 +15,16 @@
   padding: 22px 20px;
 }
 .seo-brand {
-  font: 46px/1 var(--serif, Georgia, serif);
-  letter-spacing: -2px;
+  font: 500 28px/1 var(--serif, Georgia, serif);
+  letter-spacing: -0.01em;
 }
-.seo-brand span {
+.seo-brand small {
   display: block;
-  font: 11px/1 var(--sans, sans-serif);
-  letter-spacing: 4px;
-  margin-top: 6px;
+  font: 600 10px/1.2 var(--sans, sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 6px;
 }
 .seo-nav {
   display: flex;
