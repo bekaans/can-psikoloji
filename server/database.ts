@@ -1,4 +1,4 @@
-import { DatabaseSync } from 'node:sqlite';
+import Database from 'better-sqlite3';
 import session from 'express-session';
 import { mkdirSync, chmodSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -7,7 +7,7 @@ import { defaultContent } from '../shared/content';
 export function openDatabase(dir: string) {
   mkdirSync(dir, { recursive: true, mode: 0o700 });
   const path = resolve(dir, 'can-psikoloji.sqlite');
-  const db = new DatabaseSync(path);
+  const db = new Database(path);
   chmodSync(path, 0o600);
   db.exec(`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
     CREATE TABLE IF NOT EXISTS content (id INTEGER PRIMARY KEY CHECK(id=1), body TEXT NOT NULL, version INTEGER NOT NULL, updated_at TEXT NOT NULL);
@@ -23,7 +23,7 @@ export function openDatabase(dir: string) {
 
 export class SqliteSessionStore extends session.Store {
   timer: ReturnType<typeof setInterval>;
-  constructor(private db: DatabaseSync) {
+  constructor(private db: Database.Database) {
     super();
     this.timer = setInterval(() => {
       this.db.prepare('DELETE FROM sessions WHERE expires < ?').run(Date.now());
