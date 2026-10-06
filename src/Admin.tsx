@@ -405,7 +405,7 @@ export default function Admin() {
         <div className="login-art">
           <Brand />
           <div>
-            <p className="eyebrow">CAN PSİKOLOJİ / YÖNETİM</p>
+            <p className="eyebrow">NURCAN AYDAY / YÖNETİM</p>
             <h1>
               İyi bir alan,
               <br />
