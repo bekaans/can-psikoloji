@@ -27,7 +27,7 @@ export const PAGES: PageDef[] = [
     crumb: 'Hakkımızda',
     title: `Hakkımızda | Gebze Psikoterapi - ${SHORT}`,
     description:
-      'Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday’ın misyonu, değerleri ve çalışma biçimi. 2018’den beri Gebze’de bireylere, çocuklara, ergenlere, çiftlere ve ailelere hizmet veriyoruz.',
+      'Gebze’de 2018’de Can Psikoloji adıyla başlayan birimimiz, Şubat 2026’dan itibaren Özel Sağlık Meslek Hizmet Birimi Klinik Psikolog Nurcan Ayday adıyla hizmet veriyor. Misyonumuz ve çalışma biçimimiz.',
   },
   {
     slug: 'hizmetlerimiz',
@@ -207,6 +207,8 @@ function businessSchema(content: SiteContent, origin: string) {
     '@type': ['LocalBusiness', 'MedicalBusiness'],
     '@id': `${origin}/#business`,
     name: BRAND,
+    description:
+      'Gebze’de bireysel psikoterapi, çocuk oyun terapisi, ergen psikoterapisi, çift ve aile terapisi, EMDR ve psikolojik testler. Eski adıyla Can Psikoloji; Şubat 2026’dan itibaren bu adla hizmet veriyor.',
     url: `${origin}/`,
     telephone: `+${c.phone}`,
     image: `${origin}${content.hero.image}`,
@@ -277,10 +279,10 @@ function articleBody(def: PageDef, content: SiteContent, origin: string): string
   const cleanBody = renderText(content.pages?.[def.slug]?.body ?? legacyBodies[def.slug] ?? '');
   switch (def.kind) {
     case 'about':
-      return `<p class="seo-lead">${esc(content.about.description)}</p>
+      return `<p class="seo-notice"><strong>Adımız değişti:</strong> ${esc(content.about.note)}</p>
+<p class="seo-lead">${esc(content.about.description)}</p>
 <h2>${esc(content.about.title)}</h2>
-<div class="seo-prose">${cleanBody}</div>
-<p>${esc(content.about.note)}</p>${cta}`;
+<div class="seo-prose">${cleanBody}</div>${cta}`;
     case 'services':
       return `<p class="seo-lead">${esc(content.hero.description)}</p>
 <ul class="seo-cards">${content.services
@@ -488,7 +490,7 @@ export function renderHome(content: SiteContent, origin: string, template: strin
       return `<li>${page ? `<a href="${pagePath(page.slug)}">${esc(`${t.role} ${t.name}`)}</a>` : esc(t.name)}</li>`;
     })
     .join('')}</ul>
-<h2>${esc(content.about.title)}</h2><p>${esc(content.about.description)}</p>
+<h2>${esc(content.about.title)}</h2><p>${esc(content.about.description)}</p><p><strong>Adımız değişti:</strong> ${esc(content.about.note)}</p>
 <h2>İletişim</h2><p>${esc(content.contact.address)} · <a href="tel:+${content.contact.phone}">${esc(content.contact.phoneDisplay)}</a></p></main></div>`;
   return template
     .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, jsonLd(graph))
