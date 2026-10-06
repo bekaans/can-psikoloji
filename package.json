@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "bcryptjs": "3.0.3",
-    "better-sqlite3": "13.0.3",
     "dotenv": "18.0.2",
     "express": "5.2.1",
     "express-rate-limit": "8.7.0",
@@ -28,6 +27,7 @@
     "lenis": "1.3.26",
     "lucide-react": "1.47.0",
     "multer": "2.4.0",
+    "node-sqlite3-wasm": "0.8.60",
     "passport": "0.7.0",
     "passport-local": "1.0.0",
     "react": "19.3.0",
@@ -39,7 +39,6 @@
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
-    "@types/better-sqlite3": "9.6.0",
     "@types/express": "5.0.6",
     "@types/express-session": "1.19.0",
     "@types/multer": "2.2.0",

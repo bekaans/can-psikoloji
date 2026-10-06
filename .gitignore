@@ -11,3 +11,4 @@ playwright-report/
 *.zip
 server-dist/
 canpsikoloji-sunucu.env
+deploy-tmp/
