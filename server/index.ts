@@ -25,6 +25,7 @@ const { app, close } = createApp({
   secret: process.env.SESSION_SECRET,
   username: process.env.ADMIN_USERNAME,
   passwordHash: process.env.ADMIN_PASSWORD_HASH!,
+  mustChange: process.env.ADMIN_MUST_CHANGE === '1',
   production,
   trustProxy: process.env.TRUST_PROXY === '1',
   distDir: production ? resolve('dist') : undefined,

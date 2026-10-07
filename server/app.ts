@@ -35,6 +35,7 @@ export type Config = {
   secret: string;
   username: string;
   passwordHash: string;
+  mustChange?: boolean;
   production: boolean;
   trustProxy: boolean;
   distDir?: string;
@@ -46,6 +47,18 @@ export function createApp(config: Config) {
   const mediaDir = resolve(config.dataDir, 'media');
   mkdirSync(mediaDir, { recursive: true, mode: 0o700 });
   const store = new SqliteSessionStore(db);
+  // Parola özeti veritabanında tutulur (panelden değiştirilebilir). Env değeri yalnızca ilk tohumdur.
+  if (!db.prepare('SELECT id FROM admin_auth WHERE id=1').get())
+    db.prepare('INSERT INTO admin_auth (id, hash, must_change, updated_at) VALUES (1, ?, ?, ?)').run(
+      config.passwordHash,
+      config.mustChange ? 1 : 0,
+      new Date().toISOString(),
+    );
+  const adminAuth = () =>
+    db.prepare('SELECT hash, must_change FROM admin_auth WHERE id=1').get() as {
+      hash: string;
+      must_change: number;
+    };
   const passport = new Passport();
   const origin = new URL(config.origin).origin;
   app.disable('x-powered-by');
@@ -129,7 +142,7 @@ export function createApp(config: Config) {
   passport.use(
     new Strategy(async (username, password, done) => {
       try {
-        const matches = await bcrypt.compare(password, config.passwordHash);
+        const matches = await bcrypt.compare(password, adminAuth().hash);
         const attempts = db
           .prepare('SELECT attempts, locked_until FROM login_attempts WHERE username = ?')
           .get(config.username) as { attempts: number; locked_until: number } | undefined;
@@ -157,6 +170,13 @@ export function createApp(config: Config) {
       Date.now() - req.session.authenticatedAt > 3_600_000
     ) {
       res.status(401).json({ error: 'Devam etmek için giriş yapın.' });
+      return;
+    }
+    if (
+      adminAuth().must_change &&
+      !['/api/admin/password', '/api/logout'].includes(req.path)
+    ) {
+      res.status(403).json({ error: 'Devam etmeden önce parolanızı değiştirin.' });
       return;
     }
     next();
@@ -200,6 +220,7 @@ export function createApp(config: Config) {
           ? req.user
           : null,
       csrf: req.session.csrf,
+      mustChange: !!adminAuth().must_change,
     });
   });
   app.post(
@@ -236,10 +257,55 @@ export function createApp(config: Config) {
           req.session.authenticatedAt = Date.now();
           req.session.save((e) => {
             if (e) return next(e);
-            res.json({ user, csrf: req.session.csrf });
+            res.json({ user, csrf: req.session.csrf, mustChange: !!adminAuth().must_change });
           });
         });
       })(req, res, next);
+    },
+  );
+  app.post(
+    '/api/admin/password',
+    rateLimit({
+      windowMs: 900_000,
+      limit: 10,
+      standardHeaders: 'draft-8',
+      legacyHeaders: false,
+      message: { error: 'Çok fazla deneme. 15 dakika sonra tekrar deneyin.' },
+    }),
+    auth,
+    csrf,
+    async (req, res, next) => {
+      try {
+        const parsed = z
+          .object({
+            current: z.string().min(1).max(200),
+            next: z.string().min(12, 'Yeni parola en az 12 karakter olmalı.').max(200),
+          })
+          .strict()
+          .safeParse(req.body);
+        if (!parsed.success) {
+          res
+            .status(400)
+            .json({ error: parsed.error.issues[0]?.message || 'Parola bilgileri geçersiz.' });
+          return;
+        }
+        const { current, next: nextPassword } = parsed.data;
+        if (!(await bcrypt.compare(current, adminAuth().hash))) {
+          res.status(400).json({ error: 'Mevcut parola hatalı.' });
+          return;
+        }
+        if (nextPassword === current) {
+          res.status(400).json({ error: 'Yeni parola mevcut parolayla aynı olamaz.' });
+          return;
+        }
+        db.prepare('UPDATE admin_auth SET hash=?, must_change=0, updated_at=? WHERE id=1').run(
+          await bcrypt.hash(nextPassword, 12),
+          new Date().toISOString(),
+        );
+        res.json({ ok: true });
+      } catch (e) {
+        next(e);
+      }
     },
   );
   app.post('/api/logout', auth, csrf, (req, res, next) => {

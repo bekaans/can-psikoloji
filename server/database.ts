@@ -40,6 +40,7 @@ export function openDatabase(dir: string): Db {
     CREATE TABLE IF NOT EXISTS content (id INTEGER PRIMARY KEY CHECK(id=1), body TEXT NOT NULL, version INTEGER NOT NULL, updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS sessions (sid TEXT PRIMARY KEY, data TEXT NOT NULL, expires INTEGER NOT NULL);
     CREATE TABLE IF NOT EXISTS revisions (id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT NOT NULL, created_at TEXT NOT NULL, actor TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS admin_auth (id INTEGER PRIMARY KEY CHECK(id=1), hash TEXT NOT NULL, must_change INTEGER NOT NULL, updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS login_attempts (username TEXT PRIMARY KEY, attempts INTEGER NOT NULL, locked_until INTEGER NOT NULL);
   `);
   db.prepare(

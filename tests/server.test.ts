@@ -272,3 +272,75 @@ test('İçerik yönetimi, güvenlik sınırları ve kalıcı kayıt', async (t) 
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test('İlk girişte parola değişimi zorunlu; panelden parola değiştirme', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'can-psikoloji-pw-'));
+  const origin = 'http://127.0.0.1';
+  const temp = 'gecici-parola-1';
+  const { app, close } = createApp({
+    dataDir: dir,
+    origin,
+    secret: randomBytes(48).toString('hex'),
+    username: 'tester',
+    passwordHash: await bcrypt.hash(temp, 12),
+    mustChange: true,
+    production: false,
+    trustProxy: false,
+  });
+  const server = app.listen(0, '127.0.0.1');
+  await new Promise<void>((r) => server.once('listening', r));
+  const base = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
+  let cookie = '';
+  let csrf = '';
+  const call = async (path: string, method = 'GET', body?: unknown) => {
+    const r = await fetch(base + path, {
+      method,
+      headers: {
+        Origin: origin,
+        Cookie: cookie,
+        'X-CSRF-Token': csrf,
+        ...(body ? { 'Content-Type': 'application/json' } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    const sets = r.headers.getSetCookie();
+    if (sets.length) cookie = sets.map((c) => c.split(';')[0]).join('; ');
+    return r;
+  };
+  const login = async (password: string) => {
+    csrf = ((await (await call('/api/session')).json()) as { csrf: string }).csrf;
+    return call('/api/login', 'POST', { username: 'tester', password });
+  };
+  try {
+    const first = await login(temp);
+    assert.equal(first.status, 200);
+    const info = (await first.json()) as { csrf: string; mustChange: boolean };
+    csrf = info.csrf;
+    assert.equal(info.mustChange, true);
+    assert.equal((await call('/api/admin/revisions')).status, 403);
+    assert.equal(
+      (await call('/api/admin/password', 'POST', { current: 'yanlis', next: 'yeni-parola-12345' })).status,
+      400,
+    );
+    assert.equal(
+      (await call('/api/admin/password', 'POST', { current: temp, next: 'kisa' })).status,
+      400,
+    );
+    assert.equal(
+      (await call('/api/admin/password', 'POST', { current: temp, next: 'yeni-parola-12345' })).status,
+      200,
+    );
+    assert.equal((await call('/api/admin/revisions')).status, 200);
+    assert.equal((await call('/api/logout', 'POST', {})).status, 200);
+    cookie = '';
+    assert.equal((await login(temp)).status, 401);
+    cookie = '';
+    const again = await login('yeni-parola-12345');
+    assert.equal(again.status, 200);
+    assert.equal(((await again.json()) as { mustChange: boolean }).mustChange, false);
+  } finally {
+    await new Promise<void>((r) => server.close(() => r()));
+    close();
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

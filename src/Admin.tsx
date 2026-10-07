@@ -22,6 +22,7 @@ import {
   MessageCircle,
   HelpCircle,
   Search,
+  KeyRound,
   RefreshCw,
   Menu,
   X,
@@ -31,8 +32,12 @@ import { request } from './api';
 import { contentSchema, type SiteContent, type ContentEnvelope } from '../shared/content';
 import './admin.css';
 
-type Session = { user: { username: string; role: string } | null; csrf: string };
-type Tab = 'overview' | 'page' | 'services' | 'team' | 'gallery' | 'faqs' | 'seo' | 'settings' | 'history';
+type Session = {
+  user: { username: string; role: string } | null;
+  csrf: string;
+  mustChange?: boolean;
+};
+type Tab = 'overview' | 'page' | 'services' | 'team' | 'gallery' | 'faqs' | 'seo' | 'settings' | 'account' | 'history';
 const tabs: { id: Tab; title: string; icon: typeof LayoutDashboard }[] = [
   { id: 'overview', title: 'Genel bakış', icon: LayoutDashboard },
   { id: 'page', title: 'Ana sayfa', icon: FileText },
@@ -42,6 +47,7 @@ const tabs: { id: Tab; title: string; icon: typeof LayoutDashboard }[] = [
   { id: 'faqs', title: 'Sık sorulan sorular', icon: HelpCircle },
   { id: 'seo', title: 'Sayfa metinleri (SEO)', icon: Search },
   { id: 'settings', title: 'İletişim bilgileri', icon: Settings },
+  { id: 'account', title: 'Parolayı değiştir', icon: KeyRound },
   { id: 'history', title: 'İçerik geçmişi', icon: History },
 ];
 const descriptions: Record<Tab, string> = {
@@ -53,6 +59,7 @@ const descriptions: Record<Tab, string> = {
   faqs: 'Ziyaretçilerinizin merak ettiği soruları yanıtlayın.',
   seo: 'Google’da görünen başlık ve açıklamaları, ayrıntı sayfalarındaki metinleri düzenleyin.',
   settings: 'Telefon, WhatsApp, adres ve harita bilgilerinizi güncelleyin.',
+  account: 'Yönetim paneli giriş parolanızı güncelleyin.',
   history: 'Önceki içerikleri inceleyin ve gerektiğinde geri yükleyin.',
 };
 const dateFormat = (date: string) =>
@@ -253,6 +260,8 @@ export default function Admin() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
+  const [pw, setPw] = useState({ current: '', next: '', again: '' });
+  const [changingPw, setChangingPw] = useState(false);
   const [revisions, setRevisions] = useState<{ id: number; createdAt: string; actor: string }[]>(
     [],
   );
@@ -266,6 +275,34 @@ export default function Admin() {
     document.head.append(meta);
     return () => meta.remove();
   }, []);
+  useEffect(() => {
+    if (session?.mustChange && tab !== 'account') setTab('account');
+  }, [session?.mustChange, tab]);
+  const changePassword = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!session) return;
+    setError('');
+    setNotice('');
+    if (pw.next !== pw.again) {
+      setError('Yeni parolalar aynı değil.');
+      return;
+    }
+    setChangingPw(true);
+    try {
+      await request('/api/admin/password', {
+        method: 'POST',
+        headers: { 'X-CSRF-Token': session.csrf },
+        body: JSON.stringify({ current: pw.current, next: pw.next }),
+      });
+      setPw({ current: '', next: '', again: '' });
+      setSession({ ...session, mustChange: false });
+      setNotice('Parolanız güncellendi.');
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setChangingPw(false);
+    }
+  };
   const boot = useCallback(async () => {
     setBooting(true);
     setError('');
@@ -1178,6 +1215,45 @@ export default function Admin() {
                 />
               </Panel>
             </>
+          )}
+          {tab === 'account' && (
+            <Panel
+              title="Parolayı değiştir"
+              description={
+                session?.mustChange
+                  ? 'Devam etmek için geçici parolanızı değiştirmeniz gerekir.'
+                  : 'En az 12 karakterli, tahmin edilmesi zor bir parola seçin.'
+              }
+            >
+              <form onSubmit={changePassword}>
+                <Field
+                  label="Mevcut parola"
+                  type="password"
+                  value={pw.current}
+                  maxLength={200}
+                  onChange={(v) => setPw({ ...pw, current: v })}
+                />
+                <Field
+                  label="Yeni parola"
+                  type="password"
+                  value={pw.next}
+                  maxLength={200}
+                  help="En az 12 karakter."
+                  onChange={(v) => setPw({ ...pw, next: v })}
+                />
+                <Field
+                  label="Yeni parola (tekrar)"
+                  type="password"
+                  value={pw.again}
+                  maxLength={200}
+                  onChange={(v) => setPw({ ...pw, again: v })}
+                />
+                <button className="button admin-save" type="submit" disabled={changingPw}>
+                  <Save size={16} />
+                  {changingPw ? 'Kaydediliyor…' : 'Parolayı güncelle'}
+                </button>
+              </form>
+            </Panel>
           )}
           {tab === 'history' && (
             <Panel
